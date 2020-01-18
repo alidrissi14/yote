@@ -109,6 +109,7 @@ void ecran_principal(SDL_Surface* ecran){
     SDL_Flip(ecran);
 
 	//Free
+	SDL_FreeSurface(titre);
     SDL_FreeSurface(texte_jvj);
     SDL_FreeSurface(texte_jvia);
     SDL_FreeSurface(texte_score);
@@ -156,7 +157,88 @@ void ecran_jvj(SDL_Surface* ecran){
 
 	TTF_CloseFont(police);
     TTF_Quit();
+    SDL_FreeSurface(titre);
+    SDL_FreeSurface(suivant);
+    SDL_FreeSurface(bouton_suivant);
 }
+
+// void ecran_jvj(SDL_Surface* ecran){
+// 	SDL_Surface *titre= NULL, *texte_joueur=NULL, *bouton_j1=NULL, *texte_joueur2=NULL, *bouton_j2=NULL, *texte_mode=NULL;
+// 	SDL_Surface *texte_modenormal=NULL, *texte_modevariante, *bouton_modenormal=NULL, *bouton_modevariante=NULL, *bouton_valider=NULL, *bouton_annuler=NULL, *texte_valider=NULL, *texte_annuler=NULL;
+// 	SDL_Rect pos_texte, pos_j1, pos_bouton_j1, pos_j2, pos_bouton_j2, pos_mode, pos_modenormal, pos_modevariante;
+// 	SDL_Rect pos_bouton_modenormal, pos_bouton_modevariante, pos_bouton_valider, pos_bouton_annuler, pos_texte_valider, pos_texte_annuler;
+// 	TTF_Font *police, *police_titre = NULL;
+// 	SDL_Color couleurNoire = {0, 0, 0};
+
+// 	fond_ecran_degrade(ecran);
+// 	TTF_Init();
+// 	police_titre = TTF_OpenFont("Beech.ttf", 50);
+// 	police = TTF_OpenFont("asman.ttf", 20);
+
+// 	titre = TTF_RenderUTF8_Blended(police_titre, "Joueur contre Joueur", couleurNoire);
+// 	texte_joueur = TTF_RenderUTF8_Blended(police, "Joueur 1", couleurNoire);
+// 	texte_joueur2 = TTF_RenderUTF8_Blended(police, "Joueur 2", couleurNoire);
+// 	texte_mode = TTF_RenderUTF8_Blended(police, "Mode de jeu", couleurNoire);
+// 	texte_modenormal = TTF_RenderUTF8_Blended(police, "Normal", couleurNoire);
+// 	texte_modevariante = TTF_RenderUTF8_Blended(police, "Variante", couleurNoire);
+// 	texte_valider = TTF_RenderUTF8_Blended(police, "OK", couleurNoire);
+// 	texte_annuler = TTF_RenderUTF8_Blended(police, "Retour", couleurNoire);
+	
+// 	bouton_j1 = SDL_CreateRGBSurface(SDL_HWSURFACE, 180, 55, 32, 100, 20, 50, 0);
+// 	bouton_j2 = SDL_CreateRGBSurface(SDL_HWSURFACE, 180, 55, 32, 100, 20, 50, 0);
+// 	bouton_modenormal = SDL_CreateRGBSurface(SDL_HWSURFACE, 65, 55, 32, 100, 20, 50, 0);
+// 	bouton_modevariante = SDL_CreateRGBSurface(SDL_HWSURFACE, 65, 55, 32, 100, 20, 50, 0);
+// 	bouton_valider = SDL_CreateRGBSurface(SDL_HWSURFACE, 100, 55, 32, 100, 20, 50, 0);
+// 	bouton_annuler = SDL_CreateRGBSurface(SDL_HWSURFACE, 150, 55, 32, 100, 20, 50, 0);
+	
+// 	pos_texte.x = 150;				pos_texte.y = 65;
+//     pos_bouton_j1.x = 160;			pos_bouton_j1.y = 150;
+//     pos_bouton_j2.x = 460;			pos_bouton_j2.y = 150;
+//     pos_bouton_modenormal.x = 350;	pos_bouton_modenormal.y = 240;
+//     pos_bouton_modevariante.x=350;	pos_bouton_modevariante.y = 315; 
+//     pos_bouton_valider.x = 250;		pos_bouton_valider.y = 450;
+//     pos_bouton_annuler.x = 415;		pos_bouton_annuler.y = 450;
+    
+//     SDL_FillRect(bouton_j1, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
+//     SDL_BlitSurface(bouton_j1, NULL, ecran, &pos_bouton_j1);
+    
+//     SDL_FillRect(bouton_j2, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
+//     SDL_BlitSurface(bouton_j2, NULL, ecran, &pos_bouton_j2);
+    
+//     SDL_FillRect(bouton_modenormal, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
+//     SDL_BlitSurface(bouton_modenormal, NULL, ecran, &pos_bouton_modenormal);
+    
+//     SDL_FillRect(bouton_modevariante, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
+//     SDL_BlitSurface(bouton_modevariante, NULL, ecran, &pos_bouton_modevariante);
+    
+//     SDL_FillRect(bouton_valider, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
+//     SDL_BlitSurface(bouton_valider, NULL, ecran, &pos_bouton_valider);
+
+// 	SDL_FillRect(bouton_annuler, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
+//     SDL_BlitSurface(bouton_annuler, NULL, ecran, &pos_bouton_annuler);
+    
+
+// 	SDL_BlitSurface(titre, NULL, ecran, &pos_texte); /* Blit du texte */
+// 	pos_j1.x = 80;					pos_j1.y = 165;
+//     SDL_BlitSurface(texte_joueur, NULL, ecran, &pos_j1);
+//     pos_j2.x = 380;					pos_j2.y = 165;
+//     SDL_BlitSurface(texte_joueur2, NULL, ecran, &pos_j2);
+//     pos_mode.x = 80;				pos_mode.y = 250;
+//     SDL_BlitSurface(texte_mode, NULL, ecran, &pos_mode);
+//     pos_modenormal.x = 250;			pos_modenormal.y = 250;
+//     SDL_BlitSurface(texte_modenormal, NULL, ecran, &pos_modenormal);
+//     pos_modevariante.x = 250;		pos_modevariante.y = 325;
+//     SDL_BlitSurface(texte_modevariante, NULL, ecran, &pos_modevariante);
+//     pos_texte_valider.x = 285;		pos_texte_valider.y = 465;
+//     SDL_BlitSurface(texte_valider, NULL, ecran, &pos_texte_valider);
+//     pos_texte_annuler.x = 460;		pos_texte_annuler.y = 465;
+//     SDL_BlitSurface(texte_annuler, NULL, ecran, &pos_texte_annuler);
+    
+
+
+// 	TTF_CloseFont(police);
+//     TTF_Quit();
+// }
 
 void ecran_jvia(SDL_Surface* ecran){
 	SDL_Surface *titre = NULL;
@@ -178,6 +260,21 @@ void ecran_jvia(SDL_Surface* ecran){
 
 	TTF_CloseFont(police);
     TTF_Quit();
+}
+
+void reset_case_plateau(SDL_Surface* ecran, int ligne, int colonne){
+	SDL_Surface* rect = NULL;
+	SDL_Rect position_rect;
+
+	rect = SDL_CreateRGBSurface(SDL_HWSURFACE, 69, 69, 32, 0, 0, 0, 0);
+	
+	position_rect.x = 226+colonne*70;
+	position_rect.y = 51+ligne*70;
+
+	SDL_FillRect(rect, NULL, SDL_MapRGB(ecran->format, 90, 90, 90)); 
+	SDL_BlitSurface(rect, NULL, ecran, &position_rect); 
+
+	SDL_FreeSurface(rect);
 }
 
 void jeton_restant(SDL_Surface* ecran, int joueur, int nombre_restant){
@@ -222,6 +319,7 @@ void jeton_restant(SDL_Surface* ecran, int joueur, int nombre_restant){
 				}
 	    	}
     	}
+    	SDL_FreeSurface(rect);
     	for(int s=0; s<12; s++)
     		SDL_FreeSurface(pion[s]);
 
@@ -265,6 +363,7 @@ void jeton_restant(SDL_Surface* ecran, int joueur, int nombre_restant){
 				}
 	    	}
     	}
+    	SDL_FreeSurface(rect);
     	for(int s=0; s<12; s++)
     		SDL_FreeSurface(pion[s]);
 	}
@@ -329,23 +428,69 @@ void design_plateau(SDL_Surface* ecran, int design_plateau_numero){
 }
 
 void add_pion(SDL_Surface* ecran, int ligne, int colonne, int couleur){
-	SDL_Rect position_pion;
+	//Couleur 0 blanc
+	//Couleur 1 noir 
+	//Couleur 2 blanc selectionner
+	//Couleur 3 noir selectionner
 	SDL_Surface *pion = NULL;
+	SDL_Rect position_pion;
 
 	position_pion.x=225+colonne*70;
 	position_pion.y=50+ligne*70;
 
-	if(couleur==1){
-    	pion = SDL_LoadBMP("texture/pion_noir_70.bmp");
-	}else{
+	if(couleur==0){
     	pion = SDL_LoadBMP("texture/pion_blanc_70.bmp");
+    	SDL_SetColorKey(pion, SDL_SRCCOLORKEY, SDL_MapRGB(pion->format, 0, 0, 255));
+	}else if(couleur==1){
+    	pion = SDL_LoadBMP("texture/pion_noir_70.bmp");
+    	SDL_SetColorKey(pion, SDL_SRCCOLORKEY, SDL_MapRGB(pion->format, 0, 0, 255));
+    }else if(couleur==2){
+    	pion = SDL_LoadBMP("texture/pion_blanc_red.bmp");
+    	SDL_SetColorKey(pion, SDL_SRCCOLORKEY, SDL_MapRGB(pion->format, 255, 0, 0));
+    }else{
+    	pion = SDL_LoadBMP("texture/pion_noir_red.bmp");
+    	SDL_SetColorKey(pion, SDL_SRCCOLORKEY, SDL_MapRGB(pion->format, 255, 0, 0));
     }
 
-	SDL_SetColorKey(pion, SDL_SRCCOLORKEY, SDL_MapRGB(pion->format, 0, 0, 255));
+	// SDL_SetColorKey(pion, SDL_SRCCOLORKEY, SDL_MapRGB(pion->format, 0, 0, 255));
     SDL_BlitSurface(pion, NULL, ecran, &position_pion);
     SDL_Flip(ecran);
 
     SDL_FreeSurface(pion);
+}
+
+void affichage_tour_joueur(SDL_Surface* ecran, int tour){
+	SDL_Surface *rect=NULL;
+	SDL_Surface *texte_tour = NULL;
+	SDL_Rect position;
+	TTF_Font *police = NULL;
+	SDL_Color couleur_noir = {0, 0, 0};
+	// SDL_Color couleur_blanc = {255, 255, 255};
+
+	rect = SDL_CreateRGBSurface(SDL_HWSURFACE, 73, 23, 32, 0, 0, 0, 0);
+	position.x = 365; position.y = 10;
+
+    SDL_FillRect(rect, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
+    SDL_BlitSurface(rect, NULL, ecran, &position); // Collage de la surface sur l'écran
+
+	TTF_Init();
+	police = TTF_OpenFont("asman.ttf", 25);
+
+	if(tour%2 == 1)
+		texte_tour = TTF_RenderUTF8_Blended(police, "tour j1", couleur_noir);
+	else
+		texte_tour = TTF_RenderUTF8_Blended(police, "tour j2", couleur_noir);
+
+	//texte Joueur 1
+    position.x = 370;
+    position.y = 10;
+    SDL_BlitSurface(texte_tour, NULL, ecran, &position); 
+
+    // // FREE
+    SDL_FreeSurface(rect);
+    SDL_FreeSurface(texte_tour);
+    TTF_CloseFont(police);
+    TTF_Quit();
 }
 
 void ecran_plateau(SDL_Surface* ecran, int design_plateau_numero){
@@ -353,7 +498,7 @@ void ecran_plateau(SDL_Surface* ecran, int design_plateau_numero){
 	SDL_Surface *joueur1 = NULL, *joueur2 = NULL;
 	SDL_Rect position_texte;
 	TTF_Font *police = NULL, *police_joueur = NULL;
-	//SDL_Color couleur_Noir = {0, 0, 0};
+	//SDL_Color couleur_noir = {0, 0, 0};
 	SDL_Color couleur_bleu = {0, 100, 255};
 
 
@@ -380,6 +525,7 @@ void ecran_plateau(SDL_Surface* ecran, int design_plateau_numero){
 
     jeton_restant(ecran, 1, 12);
     jeton_restant(ecran, 2, 12);
+    // affichage_tour_joueur(ecran, 1);
 
     SDL_Flip(ecran);
 
