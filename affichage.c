@@ -278,6 +278,7 @@ void reset_case_plateau(SDL_Surface* ecran, int ligne, int colonne){
 }
 
 void jeton_restant(SDL_Surface* ecran, int joueur, int nombre_restant){
+	// printf("joueur: %d  &&  nombre_restant: %d \n", joueur, nombre_restant);
 	int a_retirer=12-nombre_restant;
 	if(joueur==1){
 		SDL_Surface *rect=NULL;
@@ -438,6 +439,7 @@ void add_pion(SDL_Surface* ecran, int ligne, int colonne, int couleur){
 	position_pion.x=225+colonne*70;
 	position_pion.y=50+ligne*70;
 
+	// printf("couleur: %d \n", couleur);
 	if(couleur==0){
     	pion = SDL_LoadBMP("texture/pion_blanc_70.bmp");
     	SDL_SetColorKey(pion, SDL_SRCCOLORKEY, SDL_MapRGB(pion->format, 0, 0, 255));

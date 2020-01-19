@@ -39,7 +39,7 @@ int mouse_ecran_principal(SDL_Event event){
 int main(int argc, char *argv[]) {
 
 	SDL_Surface *ecran = NULL;
-	int interface_graphique=0;
+	int interface_graphique=4;
 	int event_clic;
 	int design_plateau=1;
 
