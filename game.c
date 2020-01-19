@@ -142,6 +142,9 @@ VARIABLE_JEU game_jvj(SDL_Surface* ecran, SDL_Event event, MYBOX ma_case, VARIAB
 
 	if (ma_case.ligne != -1 || ma_case.colonne != -1 ){ //Dans le plateau
 		if(variable.array[ma_case.ligne][ma_case.colonne] == 0){ //case libre
+			if( variable.pion_select.flag == 0 ){
+				// printf("CAS 1\n");
+				// printf("tour %d\n", variable.tour);
 				add_pion(ecran, ma_case.ligne, ma_case.colonne, variable.tour%2);
 	        	if(variable.tour%2 == 1){
 	        		variable.jeton_restant_noir--;
