@@ -87,7 +87,8 @@ int move_possible(int pion_x, int pion_y, int arriver_x, int arriver_y){
 	return 0;
 }	
 
-int manger_possible(SDL_Surface* ecran, VARIABLE_JEU variable, int arriver_x, int arriver_y){
+int manger_possible(VARIABLE_JEU variable, int arriver_x, int arriver_y){
+	// printf("manger_possible\n");
 	int x = variable.pion_select.ligne;
 	int y = variable.pion_select.colonne;
 
@@ -100,20 +101,47 @@ int manger_possible(SDL_Surface* ecran, VARIABLE_JEU variable, int arriver_x, in
 	if(x == arriver_x){
 		if( y+2 == arriver_y && variable.array[x][y+1] == (variable.tour%2)+1 )
 			return 1;
-		if( y-2 == arriver_y && variable.array[x-1][y-1] == (variable.tour%2)+1 )
+		if( y-2 == arriver_y && variable.array[x][y-1] == (variable.tour%2)+1 )
 			return 1;
 	}
 
 	return 0;
 }
 
+VARIABLE_JEU affichage_manger_possible(SDL_Surface* ecran, VARIABLE_JEU variable, int arriver_x, int arriver_y){
+	printf("affichage\n");
+
+	int x = variable.pion_select.ligne;
+	int y = variable.pion_select.colonne;
+
+	if(y == arriver_y){
+		if( x+2 == arriver_x && variable.array[x+1][y] == (variable.tour%2)+1 ){
+			reset_case_plateau(ecran, x+1, y);
+			variable.array[x+1][y]=0;
+		}
+		if( x-2 == arriver_x && variable.array[x-1][y] == (variable.tour%2)+1 ){
+			reset_case_plateau(ecran, x-1, y);
+			variable.array[x-1][y]=0;		
+		}
+	}
+	if(x == arriver_x){
+		if( y+2 == arriver_y && variable.array[x][y+1] == (variable.tour%2)+1 ){
+			reset_case_plateau(ecran, x, y+1);
+			variable.array[x][y+1]=0;
+		}
+		if( y-2 == arriver_y && variable.array[x][y-1] == (variable.tour%2)+1 ){
+			reset_case_plateau(ecran, x, y-1);
+			variable.array[x][y-1]=0;
+		}
+	}
+
+	return variable;
+}
+
 VARIABLE_JEU game_jvj(SDL_Surface* ecran, SDL_Event event, MYBOX ma_case, VARIABLE_JEU variable){
 
 	if (ma_case.ligne != -1 || ma_case.colonne != -1 ){ //Dans le plateau
 		if(variable.array[ma_case.ligne][ma_case.colonne] == 0){ //case libre
-			if( variable.pion_select.flag == 0 ){
-				// printf("CAS 1\n");
-				// printf("tour %d\n", variable.tour);
 				add_pion(ecran, ma_case.ligne, ma_case.colonne, variable.tour%2);
 	        	if(variable.tour%2 == 1){
 	        		variable.jeton_restant_noir--;
@@ -130,29 +158,22 @@ VARIABLE_JEU game_jvj(SDL_Surface* ecran, SDL_Event event, MYBOX ma_case, VARIAB
         			// printf("depart: %d && %d \n", variable.pion_select.ligne, variable.pion_select.colonne);
         			// printf("arrive: %d && %d \n", ma_case.ligne, ma_case.colonne);
         			if( move_possible(variable.pion_select.ligne, variable.pion_select.colonne, ma_case.ligne, ma_case.colonne) == 1 
-        				|| manger_possible(ecran, variable, ma_case.ligne, ma_case.colonne) == 1){
+        				|| manger_possible(variable, ma_case.ligne, ma_case.colonne) == 1){
+	    				if(manger_possible(variable, ma_case.ligne, ma_case.colonne) == 1)
+	    					variable=affichage_manger_possible(ecran, variable, ma_case.ligne, ma_case.colonne);
         				variable.pion_select.flag=0;
-        				// printf("moveeeee\n");
 	    				variable.tour++;
 	        			variable.array[variable.pion_select.ligne][variable.pion_select.colonne] = 0;
 	        			variable.array[ma_case.ligne][ma_case.colonne] = (variable.tour%2)+1;
 	        			reset_case_plateau(ecran, variable.pion_select.ligne, variable.pion_select.colonne);
 	    				add_pion(ecran, ma_case.ligne, ma_case.colonne, (variable.tour+1)%2 );
 	    				variable.pion_select=init_PION_SELECT(variable.pion_select);
-        			}else{
-        				printf("Mauvaise place\n");
         			}
         		}
-        		// reset_case_plateau(ecran, variable.pion_select.ligne, variable.pion_select.colonne);
-        		// add_pion(ecran, ma_case.ligne, ma_case.colonne, (variable.tour%2));
-        		// variable.pion_select=init_PION_SELECT(variable.pion_select);
         	}
 		}else{
 			//Selection de pion pour déplacement
 			if( variable.array[ma_case.ligne][ma_case.colonne] != variable.tour%2+1 ){
-				// printf("CAS 3 \n");
-				// printf("BON PION\n");
-				// printf("variable.tour: %d\n", (variable.tour%2)+2);
 				add_pion(ecran, ma_case.ligne, ma_case.colonne, (variable.tour%2)+2); //changer couleur du pion select
 				variable.pion_select=set_PION_SELECT(1, ma_case.ligne, ma_case.colonne);
 			}
@@ -160,10 +181,7 @@ VARIABLE_JEU game_jvj(SDL_Surface* ecran, SDL_Event event, MYBOX ma_case, VARIAB
 	}else{
 		//Retirer la selection de déplacement
 		if(variable.pion_select.flag == 1) {
-			// printf("CAS 4\n");
-			// printf("ligne: %d && colonne: %d\n", variable.pion_select.ligne, variable.pion_select.colonne);
 			variable.pion_select.flag=0;
-    		// variable.array[ma_case.ligne][ma_case.colonne] = (variable.tour%2);
     		reset_case_plateau(ecran, variable.pion_select.ligne, variable.pion_select.colonne);
     		add_pion(ecran, variable.pion_select.ligne, variable.pion_select.colonne, (variable.tour%2) );
     		variable.pion_select=init_PION_SELECT(variable.pion_select);

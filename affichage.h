@@ -8,6 +8,7 @@
 //Prototype de fonction
 void fond_ecran_degrade(SDL_Surface* ecran);
 void ecran_principal(SDL_Surface* ecran);
+// VARIABLE_JEU affichage_manger_possible(SDL_Surface* ecran, VARIABLE_JEU variable, int arriver_x, int arriver_y);
 void ecran_jvj(SDL_Surface* ecran);
 void ecran_jvia(SDL_Surface* ecran);
 void reset_case_plateau(SDL_Surface* ecran, int ligne, int colonne);

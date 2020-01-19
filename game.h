@@ -55,7 +55,8 @@ void afficher_plateau(VARIABLE_JEU plateau);
 // int plateau_case_libre(TABLEAU plateau, int x, int y, int joueur);
 MYBOX mybox_plateau(SDL_Event event);
 int move_possible(int pion_x, int pion_y, int arrive_x, int arrive_y);
-int manger_possible(SDL_Surface* ecran, VARIABLE_JEU variable, int arriver_x, int arriver_y);
+int manger_possible(VARIABLE_JEU variable, int arriver_x, int arriver_y);
+VARIABLE_JEU affichage_manger_possible(SDL_Surface* ecran, VARIABLE_JEU variable, int arriver_x, int arriver_y);
 VARIABLE_JEU game_jvj(SDL_Surface* ecran, SDL_Event event, MYBOX ma_case, VARIABLE_JEU variable);
 int game(SDL_Surface* ecran);
 

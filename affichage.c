@@ -7,6 +7,7 @@
 
 #include "affichage.h"
 #include "couleur.h"
+#include "game.h"
 #include "main.h"
  
 void fond_ecran_degrade(SDL_Surface* ecran){
