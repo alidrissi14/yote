@@ -138,7 +138,7 @@ VARIABLE_JEU affichage_manger_possible(SDL_Surface* ecran, VARIABLE_JEU variable
 	return variable;
 }
 
-VARIABLE_JEU game_jvj(SDL_Surface* ecran, SDL_Event event, MYBOX ma_case, VARIABLE_JEU variable){
+VARIABLE_JEU game_jvj(SDL_Surface* ecran, SDL_Event event, MYBOX ma_case, VARIABLE_JEU variable, PARA_JEU para_jeu){
 
 	if (ma_case.ligne != -1 || ma_case.colonne != -1 ){ //Dans le plateau
 		if(variable.array[ma_case.ligne][ma_case.colonne] == 0){ //case libre
@@ -157,7 +157,7 @@ VARIABLE_JEU game_jvj(SDL_Surface* ecran, SDL_Event event, MYBOX ma_case, VARIAB
             	variable.array[ma_case.ligne][ma_case.colonne]=(variable.tour%2)+1;
         	}else{
         		// printf("CAS 2\n");
-        		if( variable.array[ma_case.ligne][ma_case.colonne] == 0){ // Pion Select + case libre
+        		if( variable.array[ma_case.ligne][ma_case.colonne] == 0){ // Pion Select + case libre => manger pion
         			// printf("depart: %d && %d \n", variable.pion_select.ligne, variable.pion_select.colonne);
         			// printf("arrive: %d && %d \n", ma_case.ligne, ma_case.colonne);
         			if( move_possible(variable.pion_select.ligne, variable.pion_select.colonne, ma_case.ligne, ma_case.colonne) == 1 
@@ -197,7 +197,7 @@ VARIABLE_JEU game_jvj(SDL_Surface* ecran, SDL_Event event, MYBOX ma_case, VARIAB
 	return variable;
 }
 
-int game(SDL_Surface* ecran){
+int game(SDL_Surface* ecran, PARA_JEU para_jeu){
 
 	SDL_Event event; 
 	MYBOX ma_case;
@@ -234,7 +234,7 @@ int game(SDL_Surface* ecran){
 
 	        	printf("pion_choisie: %d && %d \n", variable.pion_select.ligne, variable.pion_select.colonne);
 
-	        	variable=game_jvj(ecran, event, ma_case, variable);
+	        	variable=game_jvj(ecran, event, ma_case, variable, para_jeu);
 
 				
 

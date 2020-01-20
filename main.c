@@ -2,13 +2,25 @@
 #include <stdio.h>
 #include <SDL/SDL.h>
 #include <SDL/SDL_ttf.h>
-// #include <SDL2/SDL.h>
-// #include <SDL2/SDL_image.h>
 
 #include "main.h"
 #include "affichage.h"
-#include "game.h"
+// #include "game.h"
 // #include "couleur.h"
+
+PARA_JEU init_PARA_JEU(PARA_JEU para_jeu){
+	para_jeu.joueur1[0] = 'a';
+	para_jeu.joueur1[1] = 'a';
+	para_jeu.joueur1[2] = 'a';
+
+	para_jeu.joueur2[0] = 'b';
+	para_jeu.joueur2[1] = 'b';
+	para_jeu.joueur2[2] = 'b';
+
+	para_jeu.mode = 1;
+
+	return para_jeu;
+}
 
 int mouse_ecran_principal(SDL_Event event){
 	int returned;
@@ -42,6 +54,7 @@ int main(int argc, char *argv[]) {
 	int interface_graphique=4;
 	int event_clic;
 	int design_plateau=1;
+	PARA_JEU para_jeu;
 
     SDL_Event event; /* La variable contenant l'événement */
     int continuer = 1; /* Notre booléen pour la boucle */
@@ -61,14 +74,14 @@ int main(int argc, char *argv[]) {
     	if(interface_graphique == 0 )
     		ecran_principal(ecran);
     	else if(interface_graphique == 1)
-    		ecran_jvj(ecran);
+    		para_jeu=ecran_jvj(ecran);
     	else if(interface_graphique == 2)
     		ecran_jvia(ecran);
     	else if(interface_graphique == 3)
     		ecran_score(ecran);
     	else if(interface_graphique == 4) {
     		ecran_plateau(ecran, design_plateau);
-    		continuer=game(ecran);
+    		continuer=game(ecran, para_jeu);
     	}
 
         switch(event.type) { 

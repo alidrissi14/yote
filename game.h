@@ -22,12 +22,12 @@ typedef struct MYBOX MYBOX;
 // };
 // typedef struct TABLEAU TABLEAU;
 
-// struct PARA_JEU{
-// 	char joueur1[20];
-// 	char joueur2[20];
-// 	int mode; // Normal 1 et Variente 2 
-// };
-// typedef struct MYBOX MYBOX;
+struct PARA_JEU{
+	char joueur1[20];
+	char joueur2[20];
+	int mode; // Normal 1 et Variente 2 
+};
+typedef struct PARA_JEU PARA_JEU;
 
 struct PION_SELECT{
 	int flag;
@@ -57,7 +57,7 @@ MYBOX mybox_plateau(SDL_Event event);
 int move_possible(int pion_x, int pion_y, int arrive_x, int arrive_y);
 int manger_possible(VARIABLE_JEU variable, int arriver_x, int arriver_y);
 VARIABLE_JEU affichage_manger_possible(SDL_Surface* ecran, VARIABLE_JEU variable, int arriver_x, int arriver_y);
-VARIABLE_JEU game_jvj(SDL_Surface* ecran, SDL_Event event, MYBOX ma_case, VARIABLE_JEU variable);
-int game(SDL_Surface* ecran);
+VARIABLE_JEU game_jvj(SDL_Surface* ecran, SDL_Event event, MYBOX ma_case, VARIABLE_JEU variable, PARA_JEU para_jeu);
+int game(SDL_Surface* ecran, PARA_JEU para_jeu);
 
 #endif

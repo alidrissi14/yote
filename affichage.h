@@ -2,6 +2,7 @@
 #define AFFICHAGE_H
 
 #include <SDL/SDL.h>
+#include "game.h"
 // #include <SDL2/SDL.h>
 // #include <SDL2/SDL_image.h>
 
@@ -9,7 +10,7 @@
 void fond_ecran_degrade(SDL_Surface* ecran);
 void ecran_principal(SDL_Surface* ecran);
 // VARIABLE_JEU affichage_manger_possible(SDL_Surface* ecran, VARIABLE_JEU variable, int arriver_x, int arriver_y);
-void ecran_jvj(SDL_Surface* ecran);
+PARA_JEU ecran_jvj(SDL_Surface* ecran);
 void ecran_jvia(SDL_Surface* ecran);
 void reset_case_plateau(SDL_Surface* ecran, int ligne, int colonne);
 void jeton_restant(SDL_Surface* ecran, int joueur, int nombre_restant);

@@ -125,7 +125,10 @@ void ecran_principal(SDL_Surface* ecran){
     TTF_Quit();
 }
 
-void ecran_jvj(SDL_Surface* ecran){
+PARA_JEU ecran_jvj(SDL_Surface* ecran){
+	PARA_JEU para_jeu;
+	para_jeu=init_PARA_JEU(para_jeu);
+
 	SDL_Surface *titre = NULL, *suivant = NULL;
 	SDL_Surface *bouton_suivant=NULL;
 	SDL_Rect pos_texte, pos_bouton_suivant;
@@ -161,6 +164,8 @@ void ecran_jvj(SDL_Surface* ecran){
     SDL_FreeSurface(titre);
     SDL_FreeSurface(suivant);
     SDL_FreeSurface(bouton_suivant);
+
+    return para_jeu;
 }
 
 // void ecran_jvj(SDL_Surface* ecran){
@@ -479,10 +484,14 @@ void affichage_tour_joueur(SDL_Surface* ecran, int tour){
 	TTF_Init();
 	police = TTF_OpenFont("asman.ttf", 25);
 
-	if(tour%2 == 1)
-		texte_tour = TTF_RenderUTF8_Blended(police, "tour j1", couleur_noir);
-	else
-		texte_tour = TTF_RenderUTF8_Blended(police, "tour j2", couleur_noir);
+	if(tour == -1)
+		texte_tour = TTF_RenderUTF8_Blended(police, "manger", couleur_noir);
+	else{
+		if(tour%2 == 1)
+			texte_tour = TTF_RenderUTF8_Blended(police, "tour j1", couleur_noir);
+		else
+			texte_tour = TTF_RenderUTF8_Blended(police, "tour j2", couleur_noir);
+	}
 
 	//texte Joueur 1
     position.x = 370;
