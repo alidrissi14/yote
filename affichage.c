@@ -125,126 +125,126 @@ void ecran_principal(SDL_Surface* ecran){
     TTF_Quit();
 }
 
-PARA_JEU ecran_jvj(SDL_Surface* ecran){
-	PARA_JEU para_jeu;
-	para_jeu=init_PARA_JEU(para_jeu);
+// PARA_JEU ecran_jvj(SDL_Surface* ecran){
+// 	PARA_JEU para_jeu;
+// 	para_jeu=init_PARA_JEU(para_jeu);
 
-	SDL_Surface *titre = NULL, *suivant = NULL;
-	SDL_Surface *bouton_suivant=NULL;
-	SDL_Rect pos_texte, pos_bouton_suivant;
-	TTF_Font *police = NULL;
-	SDL_Color couleurNoire = {0, 0, 0};
-
-	fond_ecran_degrade(ecran);
-	TTF_Init();
-
-	bouton_suivant = SDL_CreateRGBSurface(SDL_HWSURFACE, 180, 55, 32, 100, 20, 50, 0);
-
-	pos_bouton_suivant.x = 240; pos_bouton_suivant.y = 390;
-
-	SDL_FillRect(bouton_suivant, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
-    SDL_BlitSurface(bouton_suivant, NULL, ecran, &pos_bouton_suivant); 
-
-	// fond = IMG_Load("moraira.jpg");
-	police = TTF_OpenFont("asman.ttf", 40);
-
-	titre = TTF_RenderUTF8_Blended(police, "Joueur contre Joueur", couleurNoire);
-	suivant = TTF_RenderUTF8_Blended(police, "Suivant", couleurNoire);
-
-	pos_texte.x = 250;
-    pos_texte.y = 65;
-    SDL_BlitSurface(titre, NULL, ecran, &pos_texte); 
-
-    pos_texte.x = 250;
-    pos_texte.y = 400;
-    SDL_BlitSurface(suivant, NULL, ecran, &pos_texte);
-
-	TTF_CloseFont(police);
-    TTF_Quit();
-    SDL_FreeSurface(titre);
-    SDL_FreeSurface(suivant);
-    SDL_FreeSurface(bouton_suivant);
-
-    return para_jeu;
-}
-
-// void ecran_jvj(SDL_Surface* ecran){
-// 	SDL_Surface *titre= NULL, *texte_joueur=NULL, *bouton_j1=NULL, *texte_joueur2=NULL, *bouton_j2=NULL, *texte_mode=NULL;
-// 	SDL_Surface *texte_modenormal=NULL, *texte_modevariante, *bouton_modenormal=NULL, *bouton_modevariante=NULL, *bouton_valider=NULL, *bouton_annuler=NULL, *texte_valider=NULL, *texte_annuler=NULL;
-// 	SDL_Rect pos_texte, pos_j1, pos_bouton_j1, pos_j2, pos_bouton_j2, pos_mode, pos_modenormal, pos_modevariante;
-// 	SDL_Rect pos_bouton_modenormal, pos_bouton_modevariante, pos_bouton_valider, pos_bouton_annuler, pos_texte_valider, pos_texte_annuler;
-// 	TTF_Font *police, *police_titre = NULL;
+// 	SDL_Surface *titre = NULL, *suivant = NULL;
+// 	SDL_Surface *bouton_suivant=NULL;
+// 	SDL_Rect pos_texte, pos_bouton_suivant;
+// 	TTF_Font *police = NULL;
 // 	SDL_Color couleurNoire = {0, 0, 0};
 
 // 	fond_ecran_degrade(ecran);
 // 	TTF_Init();
-// 	police_titre = TTF_OpenFont("Beech.ttf", 50);
-// 	police = TTF_OpenFont("asman.ttf", 20);
 
-// 	titre = TTF_RenderUTF8_Blended(police_titre, "Joueur contre Joueur", couleurNoire);
-// 	texte_joueur = TTF_RenderUTF8_Blended(police, "Joueur 1", couleurNoire);
-// 	texte_joueur2 = TTF_RenderUTF8_Blended(police, "Joueur 2", couleurNoire);
-// 	texte_mode = TTF_RenderUTF8_Blended(police, "Mode de jeu", couleurNoire);
-// 	texte_modenormal = TTF_RenderUTF8_Blended(police, "Normal", couleurNoire);
-// 	texte_modevariante = TTF_RenderUTF8_Blended(police, "Variante", couleurNoire);
-// 	texte_valider = TTF_RenderUTF8_Blended(police, "OK", couleurNoire);
-// 	texte_annuler = TTF_RenderUTF8_Blended(police, "Retour", couleurNoire);
-	
-// 	bouton_j1 = SDL_CreateRGBSurface(SDL_HWSURFACE, 180, 55, 32, 100, 20, 50, 0);
-// 	bouton_j2 = SDL_CreateRGBSurface(SDL_HWSURFACE, 180, 55, 32, 100, 20, 50, 0);
-// 	bouton_modenormal = SDL_CreateRGBSurface(SDL_HWSURFACE, 65, 55, 32, 100, 20, 50, 0);
-// 	bouton_modevariante = SDL_CreateRGBSurface(SDL_HWSURFACE, 65, 55, 32, 100, 20, 50, 0);
-// 	bouton_valider = SDL_CreateRGBSurface(SDL_HWSURFACE, 100, 55, 32, 100, 20, 50, 0);
-// 	bouton_annuler = SDL_CreateRGBSurface(SDL_HWSURFACE, 150, 55, 32, 100, 20, 50, 0);
-	
-// 	pos_texte.x = 150;				pos_texte.y = 65;
-//     pos_bouton_j1.x = 160;			pos_bouton_j1.y = 150;
-//     pos_bouton_j2.x = 460;			pos_bouton_j2.y = 150;
-//     pos_bouton_modenormal.x = 350;	pos_bouton_modenormal.y = 240;
-//     pos_bouton_modevariante.x=350;	pos_bouton_modevariante.y = 315; 
-//     pos_bouton_valider.x = 250;		pos_bouton_valider.y = 450;
-//     pos_bouton_annuler.x = 415;		pos_bouton_annuler.y = 450;
-    
-//     SDL_FillRect(bouton_j1, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
-//     SDL_BlitSurface(bouton_j1, NULL, ecran, &pos_bouton_j1);
-    
-//     SDL_FillRect(bouton_j2, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
-//     SDL_BlitSurface(bouton_j2, NULL, ecran, &pos_bouton_j2);
-    
-//     SDL_FillRect(bouton_modenormal, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
-//     SDL_BlitSurface(bouton_modenormal, NULL, ecran, &pos_bouton_modenormal);
-    
-//     SDL_FillRect(bouton_modevariante, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
-//     SDL_BlitSurface(bouton_modevariante, NULL, ecran, &pos_bouton_modevariante);
-    
-//     SDL_FillRect(bouton_valider, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
-//     SDL_BlitSurface(bouton_valider, NULL, ecran, &pos_bouton_valider);
+// 	bouton_suivant = SDL_CreateRGBSurface(SDL_HWSURFACE, 180, 55, 32, 100, 20, 50, 0);
 
-// 	SDL_FillRect(bouton_annuler, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
-//     SDL_BlitSurface(bouton_annuler, NULL, ecran, &pos_bouton_annuler);
-    
+// 	pos_bouton_suivant.x = 240; pos_bouton_suivant.y = 390;
 
-// 	SDL_BlitSurface(titre, NULL, ecran, &pos_texte); /* Blit du texte */
-// 	pos_j1.x = 80;					pos_j1.y = 165;
-//     SDL_BlitSurface(texte_joueur, NULL, ecran, &pos_j1);
-//     pos_j2.x = 380;					pos_j2.y = 165;
-//     SDL_BlitSurface(texte_joueur2, NULL, ecran, &pos_j2);
-//     pos_mode.x = 80;				pos_mode.y = 250;
-//     SDL_BlitSurface(texte_mode, NULL, ecran, &pos_mode);
-//     pos_modenormal.x = 250;			pos_modenormal.y = 250;
-//     SDL_BlitSurface(texte_modenormal, NULL, ecran, &pos_modenormal);
-//     pos_modevariante.x = 250;		pos_modevariante.y = 325;
-//     SDL_BlitSurface(texte_modevariante, NULL, ecran, &pos_modevariante);
-//     pos_texte_valider.x = 285;		pos_texte_valider.y = 465;
-//     SDL_BlitSurface(texte_valider, NULL, ecran, &pos_texte_valider);
-//     pos_texte_annuler.x = 460;		pos_texte_annuler.y = 465;
-//     SDL_BlitSurface(texte_annuler, NULL, ecran, &pos_texte_annuler);
-    
+// 	SDL_FillRect(bouton_suivant, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
+//     SDL_BlitSurface(bouton_suivant, NULL, ecran, &pos_bouton_suivant); 
 
+// 	// fond = IMG_Load("moraira.jpg");
+// 	police = TTF_OpenFont("asman.ttf", 40);
+
+// 	titre = TTF_RenderUTF8_Blended(police, "Joueur contre Joueur", couleurNoire);
+// 	suivant = TTF_RenderUTF8_Blended(police, "Suivant", couleurNoire);
+
+// 	pos_texte.x = 250;
+//     pos_texte.y = 65;
+//     SDL_BlitSurface(titre, NULL, ecran, &pos_texte); 
+
+//     pos_texte.x = 250;
+//     pos_texte.y = 400;
+//     SDL_BlitSurface(suivant, NULL, ecran, &pos_texte);
 
 // 	TTF_CloseFont(police);
 //     TTF_Quit();
+//     SDL_FreeSurface(titre);
+//     SDL_FreeSurface(suivant);
+//     SDL_FreeSurface(bouton_suivant);
+
+//     return para_jeu;
 // }
+
+void ecran_jvj(SDL_Surface* ecran){
+	SDL_Surface *titre= NULL, *texte_joueur=NULL, *bouton_j1=NULL, *texte_joueur2=NULL, *bouton_j2=NULL, *texte_mode=NULL;
+	SDL_Surface *texte_modenormal=NULL, *texte_modevariante, *bouton_modenormal=NULL, *bouton_modevariante=NULL, *bouton_valider=NULL, *bouton_annuler=NULL, *texte_valider=NULL, *texte_annuler=NULL;
+	SDL_Rect pos_texte, pos_j1, pos_bouton_j1, pos_j2, pos_bouton_j2, pos_mode, pos_modenormal, pos_modevariante;
+	SDL_Rect pos_bouton_modenormal, pos_bouton_modevariante, pos_bouton_valider, pos_bouton_annuler, pos_texte_valider, pos_texte_annuler;
+	TTF_Font *police, *police_titre = NULL;
+	SDL_Color couleurNoire = {0, 0, 0};
+
+	fond_ecran_degrade(ecran);
+	TTF_Init();
+	police_titre = TTF_OpenFont("Beech.ttf", 50);
+	police = TTF_OpenFont("asman.ttf", 20);
+
+	titre = TTF_RenderUTF8_Blended(police_titre, "Joueur contre Joueur", couleurNoire);
+	texte_joueur = TTF_RenderUTF8_Blended(police, "Joueur 1", couleurNoire);
+	texte_joueur2 = TTF_RenderUTF8_Blended(police, "Joueur 2", couleurNoire);
+	texte_mode = TTF_RenderUTF8_Blended(police, "Mode de jeu", couleurNoire);
+	texte_modenormal = TTF_RenderUTF8_Blended(police, "Normal", couleurNoire);
+	texte_modevariante = TTF_RenderUTF8_Blended(police, "Variante", couleurNoire);
+	texte_valider = TTF_RenderUTF8_Blended(police, "OK", couleurNoire);
+	texte_annuler = TTF_RenderUTF8_Blended(police, "Retour", couleurNoire);
+	
+	bouton_j1 = SDL_CreateRGBSurface(SDL_HWSURFACE, 180, 55, 32, 100, 20, 50, 0);
+	bouton_j2 = SDL_CreateRGBSurface(SDL_HWSURFACE, 180, 55, 32, 100, 20, 50, 0);
+	bouton_modenormal = SDL_CreateRGBSurface(SDL_HWSURFACE, 65, 55, 32, 100, 20, 50, 0);
+	bouton_modevariante = SDL_CreateRGBSurface(SDL_HWSURFACE, 65, 55, 32, 100, 20, 50, 0);
+	bouton_valider = SDL_CreateRGBSurface(SDL_HWSURFACE, 100, 55, 32, 100, 20, 50, 0);
+	bouton_annuler = SDL_CreateRGBSurface(SDL_HWSURFACE, 150, 55, 32, 100, 20, 50, 0);
+	
+	pos_texte.x = 150;				pos_texte.y = 65;
+    pos_bouton_j1.x = 160;			pos_bouton_j1.y = 150;
+    pos_bouton_j2.x = 460;			pos_bouton_j2.y = 150;
+    pos_bouton_modenormal.x = 350;	pos_bouton_modenormal.y = 240;
+    pos_bouton_modevariante.x=350;	pos_bouton_modevariante.y = 315; 
+    pos_bouton_valider.x = 250;		pos_bouton_valider.y = 450;
+    pos_bouton_annuler.x = 415;		pos_bouton_annuler.y = 450;
+    
+    SDL_FillRect(bouton_j1, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
+    SDL_BlitSurface(bouton_j1, NULL, ecran, &pos_bouton_j1);
+    
+    SDL_FillRect(bouton_j2, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
+    SDL_BlitSurface(bouton_j2, NULL, ecran, &pos_bouton_j2);
+    
+    SDL_FillRect(bouton_modenormal, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
+    SDL_BlitSurface(bouton_modenormal, NULL, ecran, &pos_bouton_modenormal);
+    
+    SDL_FillRect(bouton_modevariante, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
+    SDL_BlitSurface(bouton_modevariante, NULL, ecran, &pos_bouton_modevariante);
+    
+    SDL_FillRect(bouton_valider, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
+    SDL_BlitSurface(bouton_valider, NULL, ecran, &pos_bouton_valider);
+
+	SDL_FillRect(bouton_annuler, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
+    SDL_BlitSurface(bouton_annuler, NULL, ecran, &pos_bouton_annuler);
+    
+
+	SDL_BlitSurface(titre, NULL, ecran, &pos_texte); /* Blit du texte */
+	pos_j1.x = 80;					pos_j1.y = 165;
+    SDL_BlitSurface(texte_joueur, NULL, ecran, &pos_j1);
+    pos_j2.x = 380;					pos_j2.y = 165;
+    SDL_BlitSurface(texte_joueur2, NULL, ecran, &pos_j2);
+    pos_mode.x = 80;				pos_mode.y = 250;
+    SDL_BlitSurface(texte_mode, NULL, ecran, &pos_mode);
+    pos_modenormal.x = 250;			pos_modenormal.y = 250;
+    SDL_BlitSurface(texte_modenormal, NULL, ecran, &pos_modenormal);
+    pos_modevariante.x = 250;		pos_modevariante.y = 325;
+    SDL_BlitSurface(texte_modevariante, NULL, ecran, &pos_modevariante);
+    pos_texte_valider.x = 285;		pos_texte_valider.y = 465;
+    SDL_BlitSurface(texte_valider, NULL, ecran, &pos_texte_valider);
+    pos_texte_annuler.x = 460;		pos_texte_annuler.y = 465;
+    SDL_BlitSurface(texte_annuler, NULL, ecran, &pos_texte_annuler);
+    
+
+
+	TTF_CloseFont(police);
+    TTF_Quit();
+}
 
 void ecran_jvia(SDL_Surface* ecran){
 	SDL_Surface *titre = NULL;
@@ -467,7 +467,7 @@ void add_pion(SDL_Surface* ecran, int ligne, int colonne, int couleur){
     SDL_FreeSurface(pion);
 }
 
-void affichage_tour_joueur(SDL_Surface* ecran, int tour){
+void affichage_tour_joueur(SDL_Surface* ecran, int tour, int manger){
 	SDL_Surface *rect=NULL;
 	SDL_Surface *texte_tour = NULL;
 	SDL_Rect position;
@@ -475,8 +475,8 @@ void affichage_tour_joueur(SDL_Surface* ecran, int tour){
 	SDL_Color couleur_noir = {0, 0, 0};
 	// SDL_Color couleur_blanc = {255, 255, 255};
 
-	rect = SDL_CreateRGBSurface(SDL_HWSURFACE, 73, 23, 32, 0, 0, 0, 0);
-	position.x = 365; position.y = 10;
+	rect = SDL_CreateRGBSurface(SDL_HWSURFACE, 125, 23, 32, 0, 0, 0, 0);
+	position.x = 355; position.y = 10;
 
     SDL_FillRect(rect, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
     SDL_BlitSurface(rect, NULL, ecran, &position); // Collage de la surface sur l'écran
@@ -484,13 +484,16 @@ void affichage_tour_joueur(SDL_Surface* ecran, int tour){
 	TTF_Init();
 	police = TTF_OpenFont("asman.ttf", 25);
 
-	if(tour == -1)
-		texte_tour = TTF_RenderUTF8_Blended(police, "manger", couleur_noir);
+	if(manger == 1)
+		if(tour%2 == 1)
+			texte_tour = TTF_RenderUTF8_Blended(police, "j1 mange", couleur_noir);
+		else
+			texte_tour = TTF_RenderUTF8_Blended(police, "j2 mange", couleur_noir);
 	else{
 		if(tour%2 == 1)
-			texte_tour = TTF_RenderUTF8_Blended(police, "tour j1", couleur_noir);
+			texte_tour = TTF_RenderUTF8_Blended(police, "tour du j1", couleur_noir);
 		else
-			texte_tour = TTF_RenderUTF8_Blended(police, "tour j2", couleur_noir);
+			texte_tour = TTF_RenderUTF8_Blended(police, "tour du j2", couleur_noir);
 	}
 
 	//texte Joueur 1

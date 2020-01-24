@@ -60,6 +60,7 @@ int main(int argc, char *argv[]) {
     int continuer = 1; /* Notre booléen pour la boucle */
 
     SDL_Init(SDL_INIT_VIDEO);
+    para_jeu=init_PARA_JEU(para_jeu);
 
     ecran = SDL_SetVideoMode(WIDTH, HEIGHT, 32, SDL_HWSURFACE | SDL_DOUBLEBUF); // Ouverture de la fenêtre
     SDL_WM_SetCaption("Yote", NULL);
@@ -74,7 +75,8 @@ int main(int argc, char *argv[]) {
     	if(interface_graphique == 0 )
     		ecran_principal(ecran);
     	else if(interface_graphique == 1)
-    		para_jeu=ecran_jvj(ecran);
+    		// para_jeu=ecran_jvj(ecran);
+    		ecran_jvj(ecran);
     	else if(interface_graphique == 2)
     		ecran_jvia(ecran);
     	else if(interface_graphique == 3)
@@ -89,7 +91,11 @@ int main(int argc, char *argv[]) {
                 continuer = 0;
                 break;
             case SDL_KEYUP:
-            	switch (event.key.keysym.sym){
+	            if( (event.key.keysym.sym >= 'A' && event.key.keysym.sym <= 'Z')
+	            	|| (event.key.keysym.sym >= 'a' && event.key.keysym.sym <= 'z')
+	   				||	(event.key.keysym.sym >= '0' && event.key.keysym.sym <= '9')){
+	            	printf("%c\n", (char) event.key.keysym.sym);
+	            } else switch (event.key.keysym.sym){
 	                case SDLK_ESCAPE: //Echap
 	                    continuer = 0;
 	                    break;
@@ -105,7 +111,8 @@ int main(int argc, char *argv[]) {
 	        			continuer=0;
 	        		else
 	        			interface_graphique=event_clic;
-	        	}else if(interface_graphique==1){
+	        	}
+	        	else if(interface_graphique==1){
 	        		if( (250<event.button.x && event.button.x<430) 
 						&& (400<event.button.y && event.button.y<450) ){
 						interface_graphique=4;
@@ -131,74 +138,6 @@ int main(int argc, char *argv[]) {
     return EXIT_SUCCESS; // Fermeture du programme
 }
 
-
-
-// int main(int argc, char *argv[]) {
-
-// 	SDL_Surface *ecran = NULL, *zozor = NULL, *texte = NULL, *fond = NULL;
-// 	SDL_Rect positionZozor;
-// 	SDL_Rect position;
-
-// 	TTF_Font *police = NULL;
-// 	SDL_Color couleurNoire = {0, 0, 0};
-
-//     SDL_Event event; /* La variable contenant l'événement */
-//     int continuer = 1; /* Notre booléen pour la boucle */
-//     TTF_Init();
-
-//     SDL_Init(SDL_INIT_VIDEO);
-
-//     ecran = SDL_SetVideoMode(WIDTH, HEIGHT, 32, SDL_HWSURFACE | SDL_DOUBLEBUF); // Ouverture de la fenêtre
-//     SDL_WM_SetCaption("Yote", NULL);
- 	
-//     if(TTF_Init() == -1){
-// 	    fprintf(stderr, "Erreur d'initialisation de TTF_Init : %s\n", TTF_GetError());
-// 	    exit(EXIT_FAILURE);
-// 	}
-
-//     positionZozor.x = 220;
-//     positionZozor.y = 220;
-
-//     fond_ecran(ecran);
-//     // maSurface = SDL_LoadPNG("texture/chessboard4.png");
-    
-//     /* Chargement de la police */
-//     police = TTF_OpenFont("angelina.ttf", 65);
-//     //Écriture du texte dans la SDL_Surface texte en mode Blended (optimal) 
-//     // texte = TTF_RenderText_Blended(police, "Salut les Zér0s !", couleurNoire);
-
-
-//     while (continuer) {
-//         SDL_WaitEvent(&event); /* On attend un événement qu'on récupère dans event */
-//         switch(event.type) { 
-//             case SDL_QUIT: //Bouton quitter de la fenêtre 
-//                 continuer = 0;
-//                 break;
-//             case SDL_KEYUP:
-//             	switch (event.key.keysym.sym){
-// 	                case SDLK_ESCAPE: //Echap
-// 	                    continuer = 0;
-// 	                    break;
-// 	                default:
-// 	                break;
-// 	            }
-// 	            break;
-// 	        case SDL_MOUSEBUTTONUP:
-// 	        	printf("x: %d  y: %d \n", event.button.x, event.button.y);
-// 	        default:
-// 	        break;
-//         }
-//     	SDL_Flip(ecran); /* Mise à jour de l'écran */
-//     }
- 	
-
-//  	SDL_FreeSurface(ecran);
-//  	SDL_FreeSurface(zozor);
-//  	TTF_Quit();
-//     SDL_Quit(); // Arrêt de la SDL
- 
-//     return EXIT_SUCCESS; // Fermeture du programme
-// }
 
 
  

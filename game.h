@@ -38,6 +38,7 @@ typedef struct PION_SELECT PION_SELECT;
 
 struct VARIABLE_JEU{
 	int array[10][10];
+	int flag_manger;
 	int tour;
 	int jeton_restant_noir;
 	int jeton_restant_blanc;
@@ -56,6 +57,7 @@ void afficher_plateau(VARIABLE_JEU plateau);
 MYBOX mybox_plateau(SDL_Event event);
 int move_possible(int pion_x, int pion_y, int arrive_x, int arrive_y);
 int manger_possible(VARIABLE_JEU variable, int arriver_x, int arriver_y);
+int pion_restant_tab(VARIABLE_JEU variable, int joueur);
 VARIABLE_JEU affichage_manger_possible(SDL_Surface* ecran, VARIABLE_JEU variable, int arriver_x, int arriver_y);
 VARIABLE_JEU game_jvj(SDL_Surface* ecran, SDL_Event event, MYBOX ma_case, VARIABLE_JEU variable, PARA_JEU para_jeu);
 int game(SDL_Surface* ecran, PARA_JEU para_jeu);
