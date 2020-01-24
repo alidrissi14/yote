@@ -289,8 +289,8 @@ int game(SDL_Surface* ecran, PARA_JEU para_jeu){
 	VARIABLE_JEU variable;
 
 	variable=init_VARIABLE_JEU(variable);
-	variable.jeton_restant_blanc=1;
-	variable.jeton_restant_noir=1;
+	// variable.jeton_restant_blanc=1;
+	// variable.jeton_restant_noir=1;
 
 	while (continuer) {
 
