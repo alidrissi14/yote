@@ -22,6 +22,45 @@ PARA_JEU init_PARA_JEU(PARA_JEU para_jeu){
 	return para_jeu;
 }
 
+int retour_choix_plateau(SDL_Event event){
+	int returned=0;
+
+	if(event.type == SDL_MOUSEBUTTONDOWN){
+		if((240 < event.button.x && event.button.x < 310) && (150 < event.button.y && event.button.y < 220)){
+			returned = 1; 
+		}
+		else if ((450 < event.button.x && event.button.x < 520) && (150 < event.button.y && event.button.y < 220)){
+			returned = 1; 
+		} 
+ 	}
+
+	return returned;
+}
+
+int choix_plateau(SDL_Event event){
+	int design_plateau_choix=0;
+
+	//SDL_WaitEvent(&event);
+	if(event.type == SDL_MOUSEBUTTONDOWN){
+		if((240 < event.button.x && event.button.x < 310) && (150 < event.button.y && event.button.y < 220)){
+			design_plateau_choix = 1; //light brown
+		}
+		else if ((450 < event.button.x && event.button.x < 520) && (150 < event.button.y && event.button.y < 220)){
+			design_plateau_choix = 2; //dark brown
+		} 
+		// else if (!(250 < event.button.x && event.button.x < 550) && (390 < event.button.y && event.button.y < 445)){
+		// 	design_plateau_choix = 0;
+		// }
+
+		/*else if ((250 < event.button.x && event.button.x < 550) && (390 < event.button.y && event.button.y < 445))
+		{
+		design_plateau_choix=0;    // quitter l'ecran options
+	}*/
+ 	}
+
+	return design_plateau_choix;
+}
+
 int mouse_ecran_principal(SDL_Event event){
 	int returned;
 
@@ -42,23 +81,74 @@ int mouse_ecran_principal(SDL_Event event){
 
 	else if( (250<event.button.x && event.button.x<550) 
 		&& (390<event.button.y && event.button.y<445) )
-		returned=0;
+		returned=5;
 		// continuer=0;
+	else if( (250<event.button.x && event.button.x<550) 
+		&& (460<event.button.y && event.button.y<515) )
+		returned=0;
 
+	return returned;
+}
+
+int mouse_ecran_score(SDL_Event event){
+	// printf("mouse_ecran_score\n");
+	int returned;
+	
+	if( (100<event.button.x && event.button.x<180) 
+		&& (450<event.button.y && event.button.y<470) )
+		returned=1;
+	else
+		returned=2;
+		// interface_graphique=2;
+
+	return returned;
+}
+
+int ecran_jvj_flag_ecriture(SDL_Event event){
+	int returned=0;
+	
+	if( (80<event.button.x && event.button.x<260) 
+		&& (165<event.button.y && event.button.y<220) )
+		returned=1;
+	else if( (380<event.button.x && event.button.x<560) 
+		&& (165<event.button.y && event.button.y<220) )
+		returned=2;
+
+	printf("returned: %d\n", returned);
 	return returned;
 }
 
 int main(int argc, char *argv[]) {
 
 	SDL_Surface *ecran = NULL;
-	int interface_graphique=0;
+	int interface_graphique=6;
 	int event_clic;
 	int design_plateau=1;
 	PARA_JEU para_jeu;
+	char my_string[50];
+	int compteur_my_string = 0;
+	int design_plateau_numero=0;
+
+	for(int s=0; s<49; s++){
+		my_string[s]=' ';
+	}
+	my_string[49]='\0';
+
+
+	// char* pseudo1="C";
+ //    char* pseudo2="E";
+    // int victoire=1;
 
     SDL_Event event; /* La variable contenant l'événement */
     int continuer = 1; /* Notre booléen pour la boucle */
     int victoire = 0;
+
+    // classement* ordre;
+    // int pseudo_present=6;
+    // int duel_presents=6;
+    // int pseudo_ecrit=6;
+    // int jvj_flag_j1 = 0;
+    // int jvj_flag_j2 = 0;
 
     SDL_Init(SDL_INIT_VIDEO);
     para_jeu=init_PARA_JEU(para_jeu);
@@ -84,16 +174,28 @@ int main(int argc, char *argv[]) {
     	else if(interface_graphique == 3)
     		ecran_score(ecran);
     	else if(interface_graphique == 4) {
-    		ecran_plateau(ecran, design_plateau);
-    		victoire=game(ecran, para_jeu);
+    		ecran_plateau(ecran, design_plateau_numero);
+    		victoire=game(ecran, para_jeu, design_plateau_numero);
+    		// if(pseudo_present==6)
+    		// 	pseudo_present=pseudo_presents(para_jeu.joueur1, para_jeu.joueur2);
+    		// if(duel_presents==6)
+    		// 	duel_presents=duel_present(para_jeu.joueur1, para_jeu.joueur2);
+
     		if(victoire==0){
     			interface_graphique=0;
     		}else if(victoire == 1){
-    			//Joueur 1 a gagner
-    			//Il faut l'ajouter dans les scores
+    	  	// 	if(pseudo_ecrit==6){
+    				// pseudo_ecrit=ecriture_historique_fichier(duel_presents, para_jeu.joueur1, para_jeu.joueur2, victoire);
+    	  	// 	}
     		}else if (victoire == 2){
-    			//Joueur 2 a gagner
+    			// if(pseudo_ecrit==6){
+    			// 	pseudo_ecrit=ecriture_historique_fichier(duel_presents, para_jeu.joueur1, para_jeu.joueur2, victoire);
+    			// }
     		}
+    	}else if(interface_graphique == 5){
+    		ecran_regles(ecran);
+    	}else if(interface_graphique == 6){
+    		ecran_choix_plateau(ecran);
     	}
 
         switch(event.type) { 
@@ -103,8 +205,26 @@ int main(int argc, char *argv[]) {
             case SDL_KEYUP:
 	            if( (event.key.keysym.sym >= 'A' && event.key.keysym.sym <= 'Z')
 	            	|| (event.key.keysym.sym >= 'a' && event.key.keysym.sym <= 'z')
-	   				||	(event.key.keysym.sym >= '0' && event.key.keysym.sym <= '9')){
-	            	printf("%c\n", (char) event.key.keysym.sym);
+	   				|| (event.key.keysym.sym >= '0' && event.key.keysym.sym <= '9')){
+
+	            	if(interface_graphique == 1){
+		            	my_string[compteur_my_string] = event.key.keysym.sym;
+		            	compteur_my_string++;
+
+		            	// if(jvj_flag_j1 == 1)
+		            	// 	strcpy(para_jeu.joueur1, my_string);
+		            	// if(jvj_flag_j1 == 2)
+		            	// 	strcpy(para_jeu.joueur2, my_string);
+
+		            	// printf("j1 %d\n", jvj_flag_j1);
+		            	// printf("j2 %d\n", jvj_flag_j2);
+
+		            	// printf("j1: %s \n", para_jeu.joueur1);
+		            	// printf("j2: %s \n\n", para_jeu.joueur2);
+		            	// printf("%s \n", my_string);
+	            	}
+	            	// printf("%c\n", (char) event.key.keysym.sym);
+
 	            } else switch (event.key.keysym.sym){
 	                case SDLK_ESCAPE: //Echap
 	                    continuer = 0;
@@ -121,18 +241,52 @@ int main(int argc, char *argv[]) {
 	        			continuer=0;
 	        		else
 	        			interface_graphique=event_clic;
-	        	}
-	        	else if(interface_graphique==1){
-	        		if( (250<event.button.x && event.button.x<430) 
-						&& (400<event.button.y && event.button.y<450) ){
+	        	}else if((interface_graphique==1) ){
+	        		// Suivant/ok
+	        		if((250<event.button.x && event.button.x<350) && (450<event.button.y && event.button.y<505) )
 						interface_graphique=4;
-	        		}
-	        	}else if(interface_graphique==4){
-	    //     		if( (670<event.button.x && event.button.x<775) 
-					// 	&& (500<event.button.y && event.button.y<534) ){
-					// 	interface_graphique=0;
-					// }
-	        	}
+
+	        		// Retour
+	        		if((415<event.button.x && event.button.x<565) && (451<event.button.y && event.button.y<506) )
+						interface_graphique=0;
+					// if( ecran_jvj_flag_ecriture(event) == 1)
+					// 	jvj_flag_j1 == 1;
+					// if( ecran_jvj_flag_ecriture(event) == 2)
+					// 	jvj_flag_j1 == 1;
+				}
+				else if((interface_graphique==2) &&((415<event.button.x && event.button.x<565) 
+	        			&& (451<event.button.y && event.button.y<506) )){
+					interface_graphique=0;
+				}
+				else if((interface_graphique==3) &&((415<event.button.x && event.button.x<565) 
+	        			&& (451<event.button.y && event.button.y<506) )){
+					event_clic=mouse_ecran_score(event);
+	        		if(event_clic==1)
+	        			interface_graphique=0;
+				}else if((interface_graphique==5) ){
+					if( (620<event.button.x && event.button.x<725) 
+	        			&& (500<event.button.y && event.button.y<534) ){
+						interface_graphique=0;
+					}
+				}else if((interface_graphique==6) ){
+					if( (250<event.button.x && event.button.x<550) 
+	        			&& (390<event.button.y && event.button.y<445) ){
+						interface_graphique=0;
+					}
+					if( retour_choix_plateau(event) )
+						interface_graphique=0;
+
+					design_plateau_numero=choix_plateau(event);
+					printf("design_plateau_numero: %d\n", design_plateau_numero);
+				}
+				// else if((interface_graphique=1) && (((161<event.button.x && event.button.x<338) 
+				// 		&& (151<event.button.y && event.button.y<205)) ||((461<event.button.x && event.button.x<639) 
+				// 		&& (151<event.button.y && event.button.y<205) ) )){
+
+				// }
+
+
+
 	        default:
 	        break;
         }
@@ -145,6 +299,10 @@ int main(int argc, char *argv[]) {
  
     return EXIT_SUCCESS; // Fermeture du programme
 }
+
+// void frappe_clavier(){
+
+// }
 
 
 

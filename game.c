@@ -241,14 +241,14 @@ VARIABLE_JEU clic_case_libre(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU var
     return variable;
 }
 
-VARIABLE_JEU clic_deplacement_pion(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU variable){
+VARIABLE_JEU clic_deplacement_pion(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU variable,int design_plateau_numero){
 // Deplace un pion sur le plateau
 // Sur la SDL et l'array
 
 	printf("clic_deplacement_pion\n");
 
 	variable.array[variable.pion_select.ligne][variable.pion_select.colonne] = 0;
-	reset_case_plateau(ecran, variable.pion_select.ligne, variable.pion_select.colonne);
+	reset_case_plateau(ecran, variable.pion_select.ligne, variable.pion_select.colonne,design_plateau_numero);
 	
 	variable.array[ma_case.ligne][ma_case.colonne] = ((variable.tour+1)%2)+1;
 	affichage_add_pion(ecran, ma_case.ligne, ma_case.colonne, (variable.tour%2) );
@@ -256,7 +256,7 @@ VARIABLE_JEU clic_deplacement_pion(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_J
 	return variable;
 }
 
-VARIABLE_JEU efface_pion_manger(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU variable){
+VARIABLE_JEU efface_pion_manger(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU variable,int design_plateau_numero){
 // Effacer un pion manger et le set dans l'array	
 
 	int x = variable.pion_select.ligne;
@@ -266,21 +266,21 @@ VARIABLE_JEU efface_pion_manger(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU 
 
 	if(y == arriver_y){
 		if( x+2 == arriver_x && variable.array[x+1][y] == (variable.tour%2)+1 ){
-			reset_case_plateau(ecran, x+1, y);
+			reset_case_plateau(ecran, x+1, y, design_plateau_numero);
 			variable.array[x+1][y]=0;
 		}
 		if( x-2 == arriver_x && variable.array[x-1][y] == (variable.tour%2)+1 ){
-			reset_case_plateau(ecran, x-1, y);
+			reset_case_plateau(ecran, x-1, y, design_plateau_numero);
 			variable.array[x-1][y]=0;		
 		}
 	}
 	if(x == arriver_x){
 		if( y+2 == arriver_y && variable.array[x][y+1] == (variable.tour%2)+1 ){
-			reset_case_plateau(ecran, x, y+1);
+			reset_case_plateau(ecran, x, y+1, design_plateau_numero);
 			variable.array[x][y+1]=0;
 		}
 		if( y-2 == arriver_y && variable.array[x][y-1] == (variable.tour%2)+1 ){
-			reset_case_plateau(ecran, x, y-1);
+			reset_case_plateau(ecran, x, y-1,design_plateau_numero);
 			variable.array[x][y-1]=0;
 		}
 	}
@@ -288,15 +288,15 @@ VARIABLE_JEU efface_pion_manger(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU 
 	return variable;
 }
 
-VARIABLE_JEU clic_manger_pion(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU variable){
+VARIABLE_JEU clic_manger_pion(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU variable,int design_plateau_numero){
 // Le clic qui permet de déplacer le pion en mangeant un pion
 	
 	printf("clic_manger_pion\n");
 
 	int mode_manger = -1;
 
-	variable = clic_deplacement_pion(ecran, ma_case, variable); 
-	variable = efface_pion_manger(ecran, ma_case, variable);
+	variable = clic_deplacement_pion(ecran, ma_case, variable,design_plateau_numero); 
+	variable = efface_pion_manger(ecran, ma_case, variable,design_plateau_numero);
 
 	//SI    -> il y a plus de pion sur le terrain 
 	//ALORS -> mange un pion dans la réserve
@@ -324,11 +324,11 @@ VARIABLE_JEU clic_manger_pion(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU va
 	return variable;
 }
 
-VARIABLE_JEU clic_mode_manger(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU variable){
+VARIABLE_JEU clic_mode_manger(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU variable,int design_plateau_numero){
 // Mange un pion du mode manger (juste après avoir manger un pion)
 	if( variable.array[ma_case.ligne][ma_case.colonne] == (variable.tour%2)+1 ){
 		printf("clic_manger_pion\n");
-		reset_case_plateau(ecran, ma_case.ligne, ma_case.colonne);
+		reset_case_plateau(ecran, ma_case.ligne, ma_case.colonne,design_plateau_numero);
 		variable.array[ma_case.ligne][ma_case.colonne]=0;
 		variable.tour++;
 		variable.flag_manger = 0;
@@ -336,7 +336,7 @@ VARIABLE_JEU clic_mode_manger(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU va
 	return variable;
 }
 
-VARIABLE_JEU clic_selection_pour_deplacement(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU variable){
+VARIABLE_JEU clic_selection_pour_deplacement(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU variable,int design_plateau_numero){
 //Selection de pion pour déplacement
 
 	if( variable.array[ma_case.ligne][ma_case.colonne] != variable.tour%2+1 ){
@@ -345,7 +345,7 @@ VARIABLE_JEU clic_selection_pour_deplacement(SDL_Surface* ecran, MYBOX ma_case, 
 			affichage_add_pion(ecran, ma_case.ligne, ma_case.colonne, (variable.tour%2)+2); //changer couleur du pion select
 			variable.pion_select=set_PION(1, ma_case.ligne, ma_case.colonne);
 		}else{ // Si pion déjà select (Déselection)
-			reset_case_plateau(ecran, variable.pion_select.ligne, variable.pion_select.colonne);
+			reset_case_plateau(ecran, variable.pion_select.ligne, variable.pion_select.colonne,design_plateau_numero);
     		affichage_add_pion(ecran, variable.pion_select.ligne, variable.pion_select.colonne, (variable.tour)%2 );
 			affichage_add_pion(ecran, ma_case.ligne, ma_case.colonne, (variable.tour%2)+2); //changer couleur du pion select
 			variable.pion_select=set_PION(1, ma_case.ligne, ma_case.colonne);
@@ -354,12 +354,12 @@ VARIABLE_JEU clic_selection_pour_deplacement(SDL_Surface* ecran, MYBOX ma_case, 
 	return variable;
 }
 
-VARIABLE_JEU clic_retirer_selection(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU variable){
+VARIABLE_JEU clic_retirer_selection(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU variable, int design_plateau_numero){
 //Retirer la selection de déplacement
 //Avec un clic en dehors du plateau
 	if(variable.pion_select.flag == 1) {
 		variable.pion_select.flag=0;
-		reset_case_plateau(ecran, variable.pion_select.ligne, variable.pion_select.colonne);
+		reset_case_plateau(ecran, variable.pion_select.ligne, variable.pion_select.colonne,design_plateau_numero);
 		affichage_add_pion(ecran, variable.pion_select.ligne, variable.pion_select.colonne, (variable.tour%2) );
 		variable.pion_select=init_PION(variable.pion_select);
 	}
@@ -367,7 +367,7 @@ VARIABLE_JEU clic_retirer_selection(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_
 	return variable;
 }
 
-VARIABLE_JEU game_jvj(SDL_Surface* ecran, SDL_Event event, MYBOX ma_case, VARIABLE_JEU variable, PARA_JEU para_jeu){
+VARIABLE_JEU game_jvj(SDL_Surface* ecran, SDL_Event event, MYBOX ma_case, VARIABLE_JEU variable, PARA_JEU para_jeu,int design_plateau_numero){
 
 	int move_precedent = 0; 
 	// printf("tour: %d \n", variable.tour);
@@ -384,7 +384,7 @@ VARIABLE_JEU game_jvj(SDL_Surface* ecran, SDL_Event event, MYBOX ma_case, VARIAB
     			
     			if( move_possible(variable.pion_select.ligne, variable.pion_select.colonne, ma_case.ligne, ma_case.colonne) 
     				&& move_precedent == 1){
-    				variable = clic_deplacement_pion(ecran, ma_case, variable);
+    				variable = clic_deplacement_pion(ecran, ma_case, variable,design_plateau_numero);
     				
     				if(variable.tour%2 == 1)
     					variable.pion_noir = set_PION_PREC(1, ma_case.ligne, ma_case.colonne, variable.pion_select.ligne, variable.pion_select.colonne);
@@ -394,18 +394,18 @@ VARIABLE_JEU game_jvj(SDL_Surface* ecran, SDL_Event event, MYBOX ma_case, VARIAB
 					variable.pion_select=init_PION(variable.pion_select);
     				variable.tour++;  				
     			}else if( manger_possible(variable, ma_case.ligne, ma_case.colonne) ){
-					variable = clic_manger_pion(ecran, ma_case, variable);
+					variable = clic_manger_pion(ecran, ma_case, variable,design_plateau_numero);
 					variable.pion_select=init_PION(variable.pion_select);
 				}
         	}
 		}else{
 			if( variable.flag_manger )
-				variable = clic_mode_manger(ecran, ma_case, variable);
+				variable = clic_mode_manger(ecran, ma_case, variable,design_plateau_numero);
 			else
-				variable = clic_selection_pour_deplacement(ecran, ma_case, variable);
+				variable = clic_selection_pour_deplacement(ecran, ma_case, variable,design_plateau_numero);
 		}
 	}else
-		variable = clic_retirer_selection(ecran, ma_case, variable);
+		variable = clic_retirer_selection(ecran, ma_case, variable,design_plateau_numero);
 
 	afficher_plateau(variable);
 
@@ -414,7 +414,8 @@ VARIABLE_JEU game_jvj(SDL_Surface* ecran, SDL_Event event, MYBOX ma_case, VARIAB
 
 
 
-int game(SDL_Surface* ecran, PARA_JEU para_jeu){
+int game(SDL_Surface* ecran, PARA_JEU para_jeu, int design_plateau_numero){
+	// printf("aaaaaaa\n");
 
 	SDL_Event event; 
 	MYBOX ma_case;
@@ -487,7 +488,7 @@ int game(SDL_Surface* ecran, PARA_JEU para_jeu){
 	        	// printf("ligne: %d & %d \n", ma_case.ligne, ma_case.colonne);
 
 	        	// printf("pion_choisie: %d && %d \n", variable.pion_select.ligne, variable.pion_select.colonne);
-	        	variable = game_jvj(ecran, event, ma_case, variable, para_jeu);
+	        	variable = game_jvj(ecran, event, ma_case, variable, para_jeu,design_plateau_numero);
 
 	        default:
 	        break;

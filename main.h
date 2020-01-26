@@ -10,5 +10,6 @@
 
 PARA_JEU init_PARA_JEU(PARA_JEU para_jeu);
 int mouse_ecran_principal(SDL_Event event);
+int mouse_ecran_score(SDL_Event event);
 
 #endif
