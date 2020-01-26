@@ -55,23 +55,30 @@ VARIABLE_JEU init_VARIABLE_JEU(VARIABLE_JEU variable);
 PION init_PION(PION pion);
 PION set_PION(int flag, int ligne, int colonne);
 PION_PREC init_PION_PREC(PION_PREC pion);
-PION_PREC set_PION_PREC(int new_flag, int new_pion_ligne, int new_pion_colonne, int new_place_ligne, int new_place_colonne);
+PION_PREC set_PION_PREC(int new_flag, int new_to_ligne, int new_to_colonne, int new_from_ligne, int new_from_colonne);
 
 void afficher_plateau(VARIABLE_JEU plateau);
 MYBOX mybox_plateau(SDL_Event event);
-int move_possible(int pion_x, int pion_y, int arrive_x, int arrive_y);
+int move_possible(int pion_x, int pion_y, int arriver_x, int arriver_y);
 int manger_possible(VARIABLE_JEU variable, int arriver_x, int arriver_y);
 int pion_restant_tab(VARIABLE_JEU variable, int joueur);
-VARIABLE_JEU efface_pion_manger(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU variable);
 int fin_jeu_version_simple(VARIABLE_JEU variable);
 int fin_jeu_version_variante(VARIABLE_JEU variable);
-
 int check_move_precedent(MYBOX ma_case, VARIABLE_JEU variable);
 
 VARIABLE_JEU clic_case_libre(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU variable);
+VARIABLE_JEU clic_deplacement_pion(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU variable);
+VARIABLE_JEU efface_pion_manger(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU variable);
+VARIABLE_JEU clic_manger_pion(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU variable);
+VARIABLE_JEU clic_mode_manger(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU variable);
+VARIABLE_JEU clic_selection_pour_deplacement(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU variable);
 VARIABLE_JEU clic_retirer_selection(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU variable);
-
 VARIABLE_JEU game_jvj(SDL_Surface* ecran, SDL_Event event, MYBOX ma_case, VARIABLE_JEU variable, PARA_JEU para_jeu);
+
 int game(SDL_Surface* ecran, PARA_JEU para_jeu);
 
 #endif
+
+
+
+

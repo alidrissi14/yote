@@ -51,13 +51,14 @@ int mouse_ecran_principal(SDL_Event event){
 int main(int argc, char *argv[]) {
 
 	SDL_Surface *ecran = NULL;
-	int interface_graphique=4;
+	int interface_graphique=0;
 	int event_clic;
 	int design_plateau=1;
 	PARA_JEU para_jeu;
 
     SDL_Event event; /* La variable contenant l'événement */
     int continuer = 1; /* Notre booléen pour la boucle */
+    int victoire = 0;
 
     SDL_Init(SDL_INIT_VIDEO);
     para_jeu=init_PARA_JEU(para_jeu);
@@ -84,7 +85,15 @@ int main(int argc, char *argv[]) {
     		ecran_score(ecran);
     	else if(interface_graphique == 4) {
     		ecran_plateau(ecran, design_plateau);
-    		continuer=game(ecran, para_jeu);
+    		victoire=game(ecran, para_jeu);
+    		if(victoire==0){
+    			interface_graphique=0;
+    		}else if(victoire == 1){
+    			//Joueur 1 a gagner
+    			//Il faut l'ajouter dans les scores
+    		}else if (victoire == 2){
+    			//Joueur 2 a gagner
+    		}
     	}
 
         switch(event.type) { 
@@ -119,12 +128,10 @@ int main(int argc, char *argv[]) {
 						interface_graphique=4;
 	        		}
 	        	}else if(interface_graphique==4){
-	        		// BOX ma_case;
-	        		// ma_case=plateau(event);
-	        		// printf("ligne: %d & %d \n", ma_case.ligne, ma_case.colonne);
-	        		// add_pion(ecran, 0, 0, 1);
-	        		
-	        		// printf("SORTIR\n");
+	    //     		if( (670<event.button.x && event.button.x<775) 
+					// 	&& (500<event.button.y && event.button.y<534) ){
+					// 	interface_graphique=0;
+					// }
 	        	}
 	        default:
 	        break;

@@ -421,6 +421,7 @@ int game(SDL_Surface* ecran, PARA_JEU para_jeu){
 	int continuer = 1;
 	int fin_de_jeu=0;
 	VARIABLE_JEU variable;
+	int victoire = 0;
 
 	variable=init_VARIABLE_JEU(variable);
 	// variable.jeton_restant_blanc=1;
@@ -435,9 +436,11 @@ int game(SDL_Surface* ecran, PARA_JEU para_jeu){
     	
     	if(fin_de_jeu == 1 && variable.tour > 2){
     		affichage_victoire(ecran, 1);
-    		printf("Joueur 1 gagnant!\n");
+    		victoire = 1;
+    		// printf("Joueur 1 gagnant!\n");
     	}else if (fin_de_jeu == 2 && variable.tour > 2){
     		affichage_victoire(ecran, 2);
+    		victoire = 2;
     		printf("Joueur 2 gagnant!\n");
     	}
 
@@ -475,6 +478,10 @@ int game(SDL_Surface* ecran, PARA_JEU para_jeu){
 	            }
 	            break;
 	        case SDL_MOUSEBUTTONDOWN:
+	        	if( (670<event.button.x && event.button.x<775) 
+					&& (500<event.button.y && event.button.y<534) ){
+	    			return victoire;
+				}
 	        	// printf("tour: %d \n", tour%2);
 	        	ma_case = mybox_plateau(event);
 	        	// printf("ligne: %d & %d \n", ma_case.ligne, ma_case.colonne);
