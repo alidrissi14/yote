@@ -61,6 +61,7 @@ int main(int argc, char *argv[]) {
 
     SDL_Init(SDL_INIT_VIDEO);
     para_jeu=init_PARA_JEU(para_jeu);
+    para_jeu.mode = 2;
 
     ecran = SDL_SetVideoMode(WIDTH, HEIGHT, 32, SDL_HWSURFACE | SDL_DOUBLEBUF); // Ouverture de la fenêtre
     SDL_WM_SetCaption("Yote", NULL);

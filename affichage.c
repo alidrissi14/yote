@@ -434,11 +434,12 @@ void design_plateau(SDL_Surface* ecran, int design_plateau_numero){
 
 }
 
-void add_pion(SDL_Surface* ecran, int ligne, int colonne, int couleur){
-	//Couleur 0 blanc
-	//Couleur 1 noir 
-	//Couleur 2 blanc selectionner
-	//Couleur 3 noir selectionner
+void affichage_add_pion(SDL_Surface* ecran, int ligne, int colonne, int couleur){
+//Affiche un pion 
+//Couleur 0 blanc
+//Couleur 1 noir 
+//Couleur 2 blanc selectionner
+//Couleur 3 noir selectionner
 	SDL_Surface *pion = NULL;
 	SDL_Rect position_pion;
 

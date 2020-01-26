@@ -15,13 +15,6 @@ struct MYBOX{
 };
 typedef struct MYBOX MYBOX;
 
-// struct TABLEAU{
-// 	int array[10][10];
-// 	int x; 
-// 	int y;
-// };
-// typedef struct TABLEAU TABLEAU;
-
 struct PARA_JEU{
 	char joueur1[20];
 	char joueur2[20];
@@ -29,12 +22,21 @@ struct PARA_JEU{
 };
 typedef struct PARA_JEU PARA_JEU;
 
-struct PION_SELECT{
+struct PION_PREC{
+	int flag;
+	int to_ligne;
+	int to_colonne;
+	int from_ligne;
+	int from_colonne;
+};
+typedef struct PION_PREC PION_PREC;
+
+struct PION{
 	int flag;
 	int ligne;
 	int colonne;
 };
-typedef struct PION_SELECT PION_SELECT;
+typedef struct PION PION;
 
 struct VARIABLE_JEU{
 	int array[10][10];
@@ -42,23 +44,33 @@ struct VARIABLE_JEU{
 	int tour;
 	int jeton_restant_noir;
 	int jeton_restant_blanc;
-	PION_SELECT pion_select;
+	PION pion_select; //Pion selectionnée
+	PION_PREC pion_blanc; //Dernier mouvement blanc
+	PION_PREC pion_noir; // Dernier mouvement noir
 };
 typedef struct VARIABLE_JEU VARIABLE_JEU;
 
 
-
-// TABLEAU init_plateau(TABLEAU plateau);
 VARIABLE_JEU init_VARIABLE_JEU(VARIABLE_JEU variable);
-PION_SELECT init_PION_SELECT(PION_SELECT pion_choisie);
-// PION_SELECT init_PION_SELECT(PION_SELECT pion_selec);
+PION init_PION(PION pion);
+PION set_PION(int flag, int ligne, int colonne);
+PION_PREC init_PION_PREC(PION_PREC pion);
+PION_PREC set_PION_PREC(int new_flag, int new_pion_ligne, int new_pion_colonne, int new_place_ligne, int new_place_colonne);
+
 void afficher_plateau(VARIABLE_JEU plateau);
-// int plateau_case_libre(TABLEAU plateau, int x, int y, int joueur);
 MYBOX mybox_plateau(SDL_Event event);
 int move_possible(int pion_x, int pion_y, int arrive_x, int arrive_y);
 int manger_possible(VARIABLE_JEU variable, int arriver_x, int arriver_y);
 int pion_restant_tab(VARIABLE_JEU variable, int joueur);
-VARIABLE_JEU affichage_manger_possible(SDL_Surface* ecran, VARIABLE_JEU variable, int arriver_x, int arriver_y);
+VARIABLE_JEU efface_pion_manger(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU variable);
+int fin_jeu_version_simple(VARIABLE_JEU variable);
+int fin_jeu_version_variante(VARIABLE_JEU variable);
+
+int check_move_precedent(MYBOX ma_case, VARIABLE_JEU variable);
+
+VARIABLE_JEU clic_case_libre(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU variable);
+VARIABLE_JEU clic_retirer_selection(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU variable);
+
 VARIABLE_JEU game_jvj(SDL_Surface* ecran, SDL_Event event, MYBOX ma_case, VARIABLE_JEU variable, PARA_JEU para_jeu);
 int game(SDL_Surface* ecran, PARA_JEU para_jeu);
 
