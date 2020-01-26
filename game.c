@@ -433,11 +433,15 @@ int game(SDL_Surface* ecran, PARA_JEU para_jeu){
        	else
        		fin_de_jeu = fin_jeu_version_variante(variable);
     	
-    	// if(fin_de_jeu == 1 && variable.tour > 2){
-    	// 	printf("Joueur 1 gagnant!\n");
-    	// }else if (fin_de_jeu == 2 && variable.tour > 2){
-    	// 	printf("Joueur 2 gagnant!\n");
-    	// }
+    	if(fin_de_jeu == 1 && variable.tour > 2){
+    		affichage_victoire(ecran, 1);
+    		printf("Joueur 1 gagnant!\n");
+    	}else if (fin_de_jeu == 2 && variable.tour > 2){
+    		affichage_victoire(ecran, 2);
+    		printf("Joueur 2 gagnant!\n");
+    	}
+
+
 
     	// printf("blanc: %d \n", variable.jeton_restant_blanc);
     	// printf("noir: %d \n", variable.jeton_restant_noir);

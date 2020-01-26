@@ -15,6 +15,19 @@ void fond_ecran_degrade(SDL_Surface* ecran){
     SDL_FillRect(ecran, NULL, blanc);
 	SDL_Surface *lignes[256] = {NULL};
 
+	SDL_Surface* rect = NULL;
+	SDL_Rect position_rect;
+
+	rect = SDL_CreateRGBSurface(SDL_HWSURFACE, WIDTH, HEIGHT, 32, 0, 0, 0, 0);
+	
+	position_rect.x = 0;
+	position_rect.y = 0;
+
+	SDL_FillRect(rect, NULL, SDL_MapRGB(ecran->format, 0, 255, 255)); 
+	SDL_BlitSurface(rect, NULL, ecran, &position_rect); 
+
+	SDL_FreeSurface(rect);
+
 	for (int i = 0 ; i <= 255 ; i++)
     	lignes[i] = SDL_CreateRGBSurface(SDL_HWSURFACE, WIDTH, 1, 32, 0, 0, 0, 0);
 
@@ -22,7 +35,7 @@ void fond_ecran_degrade(SDL_Surface* ecran){
 	    position.x = 0; // Les lignes sont à gauche (abscisse de 0)
 	    position.y = i; // La position verticale dépend du numéro de la ligne
 	    
-	    SDL_FillRect(lignes[i], NULL, SDL_MapRGB(ecran->format, i, i, i)); // Dessin
+	    SDL_FillRect(lignes[i], NULL, SDL_MapRGB(ecran->format, 0, i, i)); // Dessin
 	    SDL_BlitSurface(lignes[i], NULL, ecran, &position); // Collage
 	}
 
@@ -30,13 +43,41 @@ void fond_ecran_degrade(SDL_Surface* ecran){
 	    position.x = 0; // Les lignes sont à gauche (abscisse de 0)
 	    position.y = HEIGHT-i; // La position verticale dépend du numéro de la ligne
 	    
-	    SDL_FillRect(lignes[i], NULL, SDL_MapRGB(ecran->format, i, i, i)); // Dessin
+	    SDL_FillRect(lignes[i], NULL, SDL_MapRGB(ecran->format, 0, i, i)); // Dessin
 	    SDL_BlitSurface(lignes[i], NULL, ecran, &position); // Collage
 	}
 
  	for (int i = 0 ; i <= 255 ; i++) // Free le fond ecran 
 	    SDL_FreeSurface(lignes[i]);
 }
+
+// void fond_ecran_degrade(SDL_Surface* ecran){
+// 	SDL_Rect position;
+//     SDL_FillRect(ecran, NULL, blanc);
+// 	SDL_Surface *lignes[256] = {NULL};
+
+// 	for (int i = 0 ; i <= 255 ; i++)
+//     	lignes[i] = SDL_CreateRGBSurface(SDL_HWSURFACE, WIDTH, 1, 32, 0, 0, 0, 0);
+
+// 	for (int i=0; i <= 255; i++) {
+// 	    position.x = 0; // Les lignes sont à gauche (abscisse de 0)
+// 	    position.y = i; // La position verticale dépend du numéro de la ligne
+	    
+// 	    SDL_FillRect(lignes[i], NULL, SDL_MapRGB(ecran->format, i, i, i)); // Dessin
+// 	    SDL_BlitSurface(lignes[i], NULL, ecran, &position); // Collage
+// 	}
+
+// 	for (int i=0; i <= 255; i++) {
+// 	    position.x = 0; // Les lignes sont à gauche (abscisse de 0)
+// 	    position.y = HEIGHT-i; // La position verticale dépend du numéro de la ligne
+	    
+// 	    SDL_FillRect(lignes[i], NULL, SDL_MapRGB(ecran->format, i, i, i)); // Dessin
+// 	    SDL_BlitSurface(lignes[i], NULL, ecran, &position); // Collage
+// 	}
+
+//  	for (int i = 0 ; i <= 255 ; i++) // Free le fond ecran 
+// 	    SDL_FreeSurface(lignes[i]);
+// }
 
 void ecran_principal(SDL_Surface* ecran){
 
@@ -168,6 +209,41 @@ void ecran_principal(SDL_Surface* ecran){
 //     return para_jeu;
 // }
 
+void affichage_victoire(SDL_Surface* ecran, int joueur){
+	SDL_Surface *titre = NULL;
+	SDL_Rect position;
+	SDL_Surface* rect = NULL;
+	TTF_Font *police = NULL;
+	SDL_Color couleurBleu = {0, 100, 255};
+	SDL_Color couleurRouge = {255, 100, 0};
+
+	rect = SDL_CreateRGBSurface(SDL_HWSURFACE, 390, 44, 32, 0, 0, 0, 0);
+
+	// fond_ecran_degrade(ecran);
+	TTF_Init();
+	// fond = IMG_Load("moraira.jpg");
+	police = TTF_OpenFont("Beech.ttf", 40);
+
+	if(joueur == 1)
+		titre = TTF_RenderUTF8_Blended(police, "Victoire du Joueur 1 ", couleurBleu);
+	else
+		titre = TTF_RenderUTF8_Blended(police, "Victoire du Joueur 2 ", couleurRouge);
+
+	position.x = 205;
+	position.y = 250;
+
+	SDL_FillRect(rect, NULL, SDL_MapRGB(ecran->format, 30, 30, 30)); 
+	SDL_BlitSurface(rect, NULL, ecran, &position); 
+
+	position.x = 215;
+    position.y = 255;
+    SDL_BlitSurface(titre, NULL, ecran, &position); /* Blit du texte */
+
+    SDL_FreeSurface(rect);
+	TTF_CloseFont(police);
+    TTF_Quit();
+}
+
 void ecran_jvj(SDL_Surface* ecran){
 	SDL_Surface *titre= NULL, *texte_joueur=NULL, *bouton_j1=NULL, *texte_joueur2=NULL, *bouton_j2=NULL, *texte_mode=NULL;
 	SDL_Surface *texte_modenormal=NULL, *texte_modevariante, *bouton_modenormal=NULL, *bouton_modevariante=NULL, *bouton_valider=NULL, *bouton_annuler=NULL, *texte_valider=NULL, *texte_annuler=NULL;
@@ -240,7 +316,7 @@ void ecran_jvj(SDL_Surface* ecran){
     pos_texte_annuler.x = 460;		pos_texte_annuler.y = 465;
     SDL_BlitSurface(texte_annuler, NULL, ecran, &pos_texte_annuler);
     
-
+    // affichage_victoire(ecran, 1);
 
 	TTF_CloseFont(police);
     TTF_Quit();
@@ -476,8 +552,9 @@ void affichage_tour_joueur(SDL_Surface* ecran, int tour, int manger){
 	SDL_Color couleur_noir = {0, 0, 0};
 	// SDL_Color couleur_blanc = {255, 255, 255};
 
-	rect = SDL_CreateRGBSurface(SDL_HWSURFACE, 125, 23, 32, 0, 0, 0, 0);
-	position.x = 355; position.y = 10;
+	rect = SDL_CreateRGBSurface(SDL_HWSURFACE, 126, 23, 32, 0, 0, 0, 0);
+	position.x = 337; 
+	position.y = 10;
 
     SDL_FillRect(rect, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
     SDL_BlitSurface(rect, NULL, ecran, &position); // Collage de la surface sur l'écran
@@ -498,7 +575,7 @@ void affichage_tour_joueur(SDL_Surface* ecran, int tour, int manger){
 	}
 
 	//texte Joueur 1
-    position.x = 370;
+    position.x = 350;
     position.y = 10;
     SDL_BlitSurface(texte_tour, NULL, ecran, &position); 
 
