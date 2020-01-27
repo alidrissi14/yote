@@ -96,13 +96,112 @@ void fond_ecran_degrade_noir(SDL_Surface* ecran){
 	    SDL_FreeSurface(lignes[i]);
 }
 
+// void ecran_principal(SDL_Surface* ecran){
+
+// 	SDL_Surface *titre = NULL;
+// 	// *fond = NULL;
+// 	SDL_Surface *texte_jvj=NULL, *texte_jvia=NULL, *texte_score=NULL, *texte_regle=NULL, *texte_quit=NULL;
+// 	SDL_Surface *bouton_jvj=NULL, *bouton_jvia=NULL, *bouton_score=NULL, *bouton_regle=NULL, *bouton_quit=NULL;
+// 	SDL_Rect pos_bouton_jvj, pos_bouton_jvia, pos_bouton_score, pos_bouton_regle, pos_bouton_quit;
+// 	SDL_Rect pos_texte;
+// 	TTF_Font *police = NULL, *police_titre = NULL;
+// 	SDL_Color couleurNoire = {0, 0, 0};
+
+// 	fond_ecran_degrade(ecran);
+
+// 	TTF_Init();
+// 	// fond = IMG_Load("moraira.jpg");
+// 	police = TTF_OpenFont("asman.ttf", 30);
+// 	police_titre = TTF_OpenFont("Beech.ttf", 50);
+// 	titre = TTF_RenderUTF8_Blended(police_titre, "Yote", couleurNoire);
+// 	texte_jvj = TTF_RenderUTF8_Blended(police, "Joueur contre Joueur", couleurNoire);
+// 	texte_jvia = TTF_RenderUTF8_Blended(police, "Joueur contre Ordinateur", couleurNoire);
+// 	texte_score = TTF_RenderUTF8_Blended(police, "Tableau des scores", couleurNoire);
+// 	texte_regle = TTF_RenderUTF8_Blended(police, "Regle", couleurNoire);
+// 	texte_quit = TTF_RenderUTF8_Blended(police, "Quitter", couleurNoire);
+
+
+// 	bouton_jvj = SDL_CreateRGBSurface(SDL_HWSURFACE, 300, 55, 32, 100, 20, 50, 0);
+// 	bouton_jvia = SDL_CreateRGBSurface(SDL_HWSURFACE, 300, 55, 32, 100, 20, 50, 0);
+// 	bouton_score = SDL_CreateRGBSurface(SDL_HWSURFACE, 300, 55, 32, 100, 20, 50, 0);
+// 	bouton_regle = SDL_CreateRGBSurface(SDL_HWSURFACE, 300, 55, 32, 100, 20, 50, 0);
+// 	bouton_quit = SDL_CreateRGBSurface(SDL_HWSURFACE, 300, 55, 32, 100, 200, 150, 0);
+
+// 	pos_bouton_jvj.x = 250; pos_bouton_jvj.y = 180;
+// 	pos_bouton_jvia.x = 250; pos_bouton_jvia.y = 250;
+// 	pos_bouton_score.x = 250; pos_bouton_score.y = 320;
+// 	pos_bouton_regle.x = 250; pos_bouton_regle.y = 390;
+// 	pos_bouton_quit.x = 250; pos_bouton_quit.y = 460;
+
+//     SDL_FillRect(bouton_jvj, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
+//     SDL_BlitSurface(bouton_jvj, NULL, ecran, &pos_bouton_jvj); // Collage de la surface sur l'écran
+
+//     SDL_FillRect(bouton_jvia, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
+//     SDL_BlitSurface(bouton_jvia, NULL, ecran, &pos_bouton_jvia); // Collage de la surface sur l'écran
+
+//     SDL_FillRect(bouton_score, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
+//     SDL_BlitSurface(bouton_score, NULL, ecran, &pos_bouton_score); // Collage de la surface sur l'écran
+
+//     SDL_FillRect(bouton_regle, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
+//     SDL_BlitSurface(bouton_regle, NULL, ecran, &pos_bouton_regle); // Collage de la surface sur l'écran
+
+//     SDL_FillRect(bouton_quit, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
+//     SDL_BlitSurface(bouton_quit, NULL, ecran, &pos_bouton_quit); // Collage de la surface sur l'écran
+
+//     // pos_texte.x = 0;
+//     // pos_texte.y = 0;
+//     // SDL_BlitSurface(fond, NULL, ecran, &pos_texte); /* Blit du fond */
+
+//     pos_texte.x = 350;
+//     pos_texte.y = 65;
+//     SDL_BlitSurface(titre, NULL, ecran, &pos_texte); /* Blit du texte */
+
+//     pos_texte.x = 271;
+//     pos_texte.y = 192;
+//     SDL_BlitSurface(texte_jvj, NULL, ecran, &pos_texte); /* Blit du texte */
+
+//     pos_texte.x = 255;
+//     pos_texte.y = 265;
+//     SDL_BlitSurface(texte_jvia, NULL, ecran, &pos_texte); /* Blit du texte */
+    
+//     pos_texte.x = 288;
+//     pos_texte.y = 332;
+//     SDL_BlitSurface(texte_score, NULL, ecran, &pos_texte); /* Blit du texte */
+    
+//     pos_texte.x = 355;
+//     pos_texte.y = 405;
+//     SDL_BlitSurface(texte_regle, NULL, ecran, &pos_texte); /* Blit du texte */
+
+// 	pos_texte.x = 350;
+//     pos_texte.y = 472;
+//     SDL_BlitSurface(texte_quit, NULL, ecran, &pos_texte); /* Blit du texte */
+//     SDL_Flip(ecran);
+
+// 	//Free
+// 	SDL_FreeSurface(titre);
+//     SDL_FreeSurface(texte_jvj);
+//     SDL_FreeSurface(texte_jvia);
+//     SDL_FreeSurface(texte_score);
+//     SDL_FreeSurface(texte_regle);
+//     SDL_FreeSurface(texte_quit);
+
+//     SDL_FreeSurface(bouton_jvj);
+//     SDL_FreeSurface(bouton_jvia);
+//     SDL_FreeSurface(bouton_score);
+//     SDL_FreeSurface(bouton_regle);
+//     SDL_FreeSurface(bouton_quit);
+    	
+//     TTF_CloseFont(police);
+//     TTF_Quit();
+// }
+
 void ecran_principal(SDL_Surface* ecran){
 
 	SDL_Surface *titre = NULL;
 	// *fond = NULL;
 	SDL_Surface *texte_jvj=NULL, *texte_jvia=NULL, *texte_score=NULL, *texte_regle=NULL, *texte_quit=NULL;
-	SDL_Surface *bouton_jvj=NULL, *bouton_jvia=NULL, *bouton_score=NULL, *bouton_regle=NULL, *bouton_quit=NULL;
-	SDL_Rect pos_bouton_jvj, pos_bouton_jvia, pos_bouton_score, pos_bouton_regle, pos_bouton_quit;
+	SDL_Surface *bouton_jvj=NULL, *bouton_jvia=NULL, *bouton_score=NULL, *bouton_regle=NULL, *bouton_quit=NULL, *bouton_settings= NULL, *fond_bouton_settings= NULL;
+	SDL_Rect pos_bouton_jvj, pos_bouton_jvia, pos_bouton_score, pos_bouton_regle, pos_bouton_quit,pos_bouton_settings, pos_fond_bouton_settings;
 	SDL_Rect pos_texte;
 	TTF_Font *police = NULL, *police_titre = NULL;
 	SDL_Color couleurNoire = {0, 0, 0};
@@ -126,27 +225,38 @@ void ecran_principal(SDL_Surface* ecran){
 	bouton_score = SDL_CreateRGBSurface(SDL_HWSURFACE, 300, 55, 32, 100, 20, 50, 0);
 	bouton_regle = SDL_CreateRGBSurface(SDL_HWSURFACE, 300, 55, 32, 100, 20, 50, 0);
 	bouton_quit = SDL_CreateRGBSurface(SDL_HWSURFACE, 300, 55, 32, 100, 200, 150, 0);
+  	fond_bouton_settings = SDL_CreateRGBSurface(SDL_HWSURFACE, 70, 70, 32, 100, 200, 150, 0);
 
 	pos_bouton_jvj.x = 250; pos_bouton_jvj.y = 180;
 	pos_bouton_jvia.x = 250; pos_bouton_jvia.y = 250;
 	pos_bouton_score.x = 250; pos_bouton_score.y = 320;
 	pos_bouton_regle.x = 250; pos_bouton_regle.y = 390;
 	pos_bouton_quit.x = 250; pos_bouton_quit.y = 460;
+  	pos_bouton_settings.x = 725; pos_bouton_settings.y = 55;
+  	pos_fond_bouton_settings.x = 720; pos_fond_bouton_settings.y = 50;
 
-    SDL_FillRect(bouton_jvj, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
+
+    SDL_FillRect(bouton_jvj, NULL, SDL_MapRGB(ecran->format, 255, 255, 255));
     SDL_BlitSurface(bouton_jvj, NULL, ecran, &pos_bouton_jvj); // Collage de la surface sur l'écran
 
-    SDL_FillRect(bouton_jvia, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
+    SDL_FillRect(bouton_jvia, NULL, SDL_MapRGB(ecran->format, 255, 255, 255));
     SDL_BlitSurface(bouton_jvia, NULL, ecran, &pos_bouton_jvia); // Collage de la surface sur l'écran
 
-    SDL_FillRect(bouton_score, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
+    SDL_FillRect(bouton_score, NULL, SDL_MapRGB(ecran->format, 255, 255, 255));
     SDL_BlitSurface(bouton_score, NULL, ecran, &pos_bouton_score); // Collage de la surface sur l'écran
 
-    SDL_FillRect(bouton_regle, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
+    SDL_FillRect(bouton_regle, NULL, SDL_MapRGB(ecran->format, 255, 255, 255));
     SDL_BlitSurface(bouton_regle, NULL, ecran, &pos_bouton_regle); // Collage de la surface sur l'écran
 
-    SDL_FillRect(bouton_quit, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
+    SDL_FillRect(fond_bouton_settings, NULL, SDL_MapRGB(ecran->format, 255, 255, 255));
+    SDL_BlitSurface(fond_bouton_settings, NULL, ecran, &pos_fond_bouton_settings); // Collage de la surface sur l'écran
+
+    SDL_FillRect(bouton_quit, NULL, SDL_MapRGB(ecran->format, 255, 255, 255));
     SDL_BlitSurface(bouton_quit, NULL, ecran, &pos_bouton_quit); // Collage de la surface sur l'écran
+
+    bouton_settings = SDL_LoadBMP("texture/bouton_settings.bmp");
+    SDL_SetColorKey(bouton_settings,SDL_SRCCOLORKEY,SDL_MapRGB(bouton_settings->format,0,0,0));
+    SDL_BlitSurface(bouton_settings, NULL, ecran, &pos_bouton_settings);
 
     // pos_texte.x = 0;
     // pos_texte.y = 0;
@@ -163,11 +273,11 @@ void ecran_principal(SDL_Surface* ecran){
     pos_texte.x = 255;
     pos_texte.y = 265;
     SDL_BlitSurface(texte_jvia, NULL, ecran, &pos_texte); /* Blit du texte */
-    
+
     pos_texte.x = 288;
     pos_texte.y = 332;
     SDL_BlitSurface(texte_score, NULL, ecran, &pos_texte); /* Blit du texte */
-    
+
     pos_texte.x = 355;
     pos_texte.y = 405;
     SDL_BlitSurface(texte_regle, NULL, ecran, &pos_texte); /* Blit du texte */
@@ -189,54 +299,66 @@ void ecran_principal(SDL_Surface* ecran){
     SDL_FreeSurface(bouton_jvia);
     SDL_FreeSurface(bouton_score);
     SDL_FreeSurface(bouton_regle);
+    SDL_FreeSurface(bouton_settings);
+    SDL_FreeSurface(fond_bouton_settings);
     SDL_FreeSurface(bouton_quit);
-    	
+
     TTF_CloseFont(police);
+    TTF_CloseFont(police_titre);
     TTF_Quit();
 }
 
-// PARA_JEU ecran_jvj(SDL_Surface* ecran){
-// 	PARA_JEU para_jeu;
-// 	para_jeu=init_PARA_JEU(para_jeu);
+void ecran_jvj_pseudo(SDL_Surface* ecran, int joueur){
+	SDL_Surface *bouton_j1=NULL, *bouton_j2=NULL;
+	SDL_Rect pos_bouton_j1, pos_bouton_j2;
+	
+	bouton_j1 = SDL_CreateRGBSurface(SDL_HWSURFACE, 180, 55, 32, 255, 255, 255, 0);
+	bouton_j2 = SDL_CreateRGBSurface(SDL_HWSURFACE, 180, 55, 32, 255, 255, 255, 0);
+	
+    pos_bouton_j1.x = 160;			pos_bouton_j1.y = 150;
+    pos_bouton_j2.x = 460;			pos_bouton_j2.y = 150;
+    
+    if(joueur == 1){
+	    SDL_FillRect(bouton_j1, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
+	    SDL_BlitSurface(bouton_j1, NULL, ecran, &pos_bouton_j1);
+    }
+    
+    if(joueur == 2){
+	    SDL_FillRect(bouton_j2, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
+	    SDL_BlitSurface(bouton_j2, NULL, ecran, &pos_bouton_j2);
+    }
 
-// 	SDL_Surface *titre = NULL, *suivant = NULL;
-// 	SDL_Surface *bouton_suivant=NULL;
-// 	SDL_Rect pos_texte, pos_bouton_suivant;
-// 	TTF_Font *police = NULL;
-// 	SDL_Color couleurNoire = {0, 0, 0};
+   	SDL_FreeSurface(bouton_j1);
+   	SDL_FreeSurface(bouton_j2); 
 
-// 	fond_ecran_degrade(ecran);
-// 	TTF_Init();
+    TTF_Quit();
+}
 
-// 	bouton_suivant = SDL_CreateRGBSurface(SDL_HWSURFACE, 180, 55, 32, 100, 20, 50, 0);
+void ecran_jvj_pseudo_reset(SDL_Surface* ecran, int joueur){
+	SDL_Surface *bouton_j1=NULL, *bouton_j2=NULL;
+	SDL_Rect pos_bouton_j1, pos_bouton_j2;
+	
+	bouton_j1 = SDL_CreateRGBSurface(SDL_HWSURFACE, 180, 55, 32, 100, 20, 50, 0);
+	bouton_j2 = SDL_CreateRGBSurface(SDL_HWSURFACE, 180, 55, 32, 100, 20, 50, 0);
+	
+    pos_bouton_j1.x = 160;			pos_bouton_j1.y = 150;
+    pos_bouton_j2.x = 460;			pos_bouton_j2.y = 150;
+    
+    if(joueur == 1){
+	    SDL_FillRect(bouton_j1, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
+	    SDL_BlitSurface(bouton_j1, NULL, ecran, &pos_bouton_j1);
+    }
+    
+    if(joueur == 2){
+	    SDL_FillRect(bouton_j2, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
+	    SDL_BlitSurface(bouton_j2, NULL, ecran, &pos_bouton_j2);
+    }
 
-// 	pos_bouton_suivant.x = 240; pos_bouton_suivant.y = 390;
+   	SDL_FreeSurface(bouton_j1);
+   	SDL_FreeSurface(bouton_j2); 
 
-// 	SDL_FillRect(bouton_suivant, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
-//     SDL_BlitSurface(bouton_suivant, NULL, ecran, &pos_bouton_suivant); 
-
-// 	// fond = IMG_Load("moraira.jpg");
-// 	police = TTF_OpenFont("asman.ttf", 40);
-
-// 	titre = TTF_RenderUTF8_Blended(police, "Joueur contre Joueur", couleurNoire);
-// 	suivant = TTF_RenderUTF8_Blended(police, "Suivant", couleurNoire);
-
-// 	pos_texte.x = 250;
-//     pos_texte.y = 65;
-//     SDL_BlitSurface(titre, NULL, ecran, &pos_texte); 
-
-//     pos_texte.x = 250;
-//     pos_texte.y = 400;
-//     SDL_BlitSurface(suivant, NULL, ecran, &pos_texte);
-
-// 	TTF_CloseFont(police);
-//     TTF_Quit();
-//     SDL_FreeSurface(titre);
-//     SDL_FreeSurface(suivant);
-//     SDL_FreeSurface(bouton_suivant);
-
-//     return para_jeu;
-// }
+    TTF_Quit();
+}
 
 void ecran_jvj(SDL_Surface* ecran){
 	SDL_Surface *titre= NULL, *texte_joueur=NULL, *bouton_j1=NULL, *texte_joueur2=NULL, *bouton_j2=NULL, *texte_mode=NULL,*nomJoueur1=NULL, *nomJoueur2=NULL;
@@ -328,6 +450,33 @@ void ecran_jvj(SDL_Surface* ecran){
     TTF_Quit();
 }
 
+void ecran_jvj_ecrire_pseudo(SDL_Surface* ecran, int joueur, char my_string[50]){
+	SDL_Surface *titre = NULL;
+	SDL_Rect position;
+	TTF_Font *police = NULL;
+	// SDL_Color couleurBleu = {0, 100, 255};
+	SDL_Color couleurRouge = {255, 100, 0};
+
+	TTF_Init();
+	police = TTF_OpenFont("asman.ttf", 40);
+
+	titre = TTF_RenderUTF8_Blended(police, my_string, couleurRouge);
+
+	if(joueur == 1){
+		position.x = 205;
+		position.y = 250;
+	}else{
+		position.x = 205;
+		position.y = 250;
+	}
+
+
+    SDL_BlitSurface(titre, NULL, ecran, &position); /* Blit du texte */
+
+	SDL_FreeSurface(titre);
+	TTF_CloseFont(police);
+    TTF_Quit();
+}
 
 void affichage_victoire(SDL_Surface* ecran, int joueur){
 	SDL_Surface *titre = NULL;
@@ -359,6 +508,7 @@ void affichage_victoire(SDL_Surface* ecran, int joueur){
     position.y = 255;
     SDL_BlitSurface(titre, NULL, ecran, &position); /* Blit du texte */
 
+    SDL_FreeSurface(titre);
     SDL_FreeSurface(rect);
 	TTF_CloseFont(police);
     TTF_Quit();
@@ -391,6 +541,7 @@ void bouton_quit(SDL_Surface* ecran){
     position.y = 505;
     SDL_BlitSurface(titre, NULL, ecran, &position); /* Blit du texte */
 
+    SDL_FreeSurface(titre);
     SDL_FreeSurface(rect);
 	TTF_CloseFont(police);
     TTF_Quit();
@@ -423,12 +574,11 @@ void bouton_quit2(SDL_Surface* ecran){
     position.y = 505;
     SDL_BlitSurface(titre, NULL, ecran, &position); /* Blit du texte */
 
+    SDL_FreeSurface(titre);
     SDL_FreeSurface(rect);
 	TTF_CloseFont(police);
     TTF_Quit();
 }
-
-
 
 void ecran_jvia(SDL_Surface* ecran){
 	SDL_Surface *titre = NULL;
@@ -448,24 +598,34 @@ void ecran_jvia(SDL_Surface* ecran){
     pos_texte.y = 65;
     SDL_BlitSurface(titre, NULL, ecran, &pos_texte); /* Blit du texte */
 
+    SDL_FreeSurface(titre);
 	TTF_CloseFont(police);
     TTF_Quit();
 }
 
-// void reset_case_plateau(SDL_Surface* ecran, int ligne, int colonne){
-// 	SDL_Surface* rect = NULL;
-// 	SDL_Rect position_rect;
 
-// 	rect = SDL_CreateRGBSurface(SDL_HWSURFACE, 69, 69, 32, 0, 0, 0, 0);
-	
-// 	position_rect.x = 226+colonne*70;
-// 	position_rect.y = 51+ligne*70;
+/*void reset_case_plateau(SDL_Surface* ecran, int ligne, int colonne, int design_plateau_numero){
+	SDL_Surface* rect = NULL;
+	SDL_Rect position_rect;
 
-// 	SDL_FillRect(rect, NULL, SDL_MapRGB(ecran->format, 90, 90, 90)); 
-// 	SDL_BlitSurface(rect, NULL, ecran, &position_rect); 
+	position_rect.x = 226+colonne*70;
+	position_rect.y = 51+ligne*70;
 
-// 	SDL_FreeSurface(rect);
-// }
+	if(design_plateau_numero == 0){
+		rect = SDL_CreateRGBSurface(SDL_HWSURFACE, 69, 69, 32, 0, 0, 0, 0);
+		SDL_FillRect(rect, NULL, SDL_MapRGB(ecran->format, 90, 90, 90));
+		SDL_BlitSurface(rect, NULL, ecran, &position_rect);
+
+	}else if(design_plateau_numero == 1){
+		rect = SDL_LoadBMP("texture/plateau/chessboard11.bmp");
+		SDL_BlitSurface(rect, NULL, ecran, &position_rect);
+	}else if(design_plateau_numero == 2){
+		rect = SDL_LoadBMP("texture/plateau/chessboard22.bmp");
+		SDL_BlitSurface(rect, NULL, ecran, &position_rect);
+	}
+
+	SDL_FreeSurface(rect);
+}*/
 
 void reset_case_plateau(SDL_Surface* ecran, int ligne, int colonne, int design_plateau_numero){
 	SDL_Surface* rect = NULL;
@@ -484,6 +644,15 @@ void reset_case_plateau(SDL_Surface* ecran, int ligne, int colonne, int design_p
 		SDL_BlitSurface(rect, NULL, ecran, &position_rect);
 	}else if(design_plateau_numero == 2){
 		rect = SDL_LoadBMP("texture/plateau/chessboard22.bmp");
+		SDL_BlitSurface(rect, NULL, ecran, &position_rect);
+	}else if(design_plateau_numero == 3){
+		rect = SDL_LoadBMP("texture/plateau/chessboard33.bmp");
+		SDL_BlitSurface(rect, NULL, ecran, &position_rect);
+	}else if(design_plateau_numero == 4){
+		rect = SDL_LoadBMP("texture/plateau/chessboard44.bmp");
+		SDL_BlitSurface(rect, NULL, ecran, &position_rect);
+	}else if(design_plateau_numero == 5){
+		rect = SDL_LoadBMP("texture/plateau/chessboard55.bmp");
 		SDL_BlitSurface(rect, NULL, ecran, &position_rect);
 	}
 
@@ -583,73 +752,15 @@ void jeton_restant(SDL_Surface* ecran, int joueur, int nombre_restant){
 	}
 }
 
-// void design_plateau(SDL_Surface* ecran, int design_plateau_numero){
-
-// 	if(design_plateau_numero==1){
-
-// 		SDL_Surface *plateau=NULL;
-// 		SDL_Rect position_plateau, position_horizontale, position_verticale;
-// 		SDL_Surface *ligne_horizontale[7] = {NULL};
-// 		SDL_Surface *ligne_verticale[6] = {NULL};
-
-// 		plateau = SDL_CreateRGBSurface(SDL_HWSURFACE, 350, 420, 32, 0, 0, 0, 0);
-		
-// 		//ligne horizontale
-// 		for (int i = 0; i < 7; i++)
-// 	    	ligne_horizontale[i] = SDL_CreateRGBSurface(SDL_HWSURFACE, 350, 1, 32, 0, 0, 0, 0);
-
-// 	    //ligne verticale
-// 		for (int i = 0; i < 6; i++)
-// 	    	ligne_verticale[i] = SDL_CreateRGBSurface(SDL_HWSURFACE, 1, 420, 32, 0, 0, 0, 0);
-
-
-// 		position_plateau.x = 225; 
-// 		position_plateau.y = 50;
-// 	    SDL_FillRect(plateau, NULL, SDL_MapRGB(ecran->format, 90, 90, 90)); 
-// 	    SDL_BlitSurface(plateau, NULL, ecran, &position_plateau); 
-
-// 	    //ligne horizontale
-// 	    for (int i = 0 ; i < 7 ; i++) {
-// 		    position_horizontale.x = 225; 
-// 		    position_horizontale.y = 50+(i*70); 
-		    
-// 		    SDL_FillRect(ligne_horizontale[i], NULL, SDL_MapRGB(ecran->format, 225, 225, 225));
-// 		    SDL_BlitSurface(ligne_horizontale[i], NULL, ecran, &position_horizontale);
-// 		}
-
-// 		//ligne verticale
-// 	    for (int i = 0 ; i < 6 ; i++) {
-// 		    position_verticale.x = 225+(i*70); 
-// 		    position_verticale.y = 50; 
-		    
-// 		    SDL_FillRect(ligne_verticale[i], NULL, SDL_MapRGB(ecran->format, 225, 225, 225)); 
-// 		    SDL_BlitSurface(ligne_verticale[i], NULL, ecran, &position_verticale); 
-// 		}
-// 		// FREE
-// 	    //lignes horizontale
-// 	    for (int i = 0 ; i < 7 ; i++)
-// 	        SDL_FreeSurface(ligne_horizontale[i]);
-
-// 	    //lignes verticale
-// 	    for (int i = 0 ; i < 6 ; i++)
-// 	        SDL_FreeSurface(ligne_verticale[i]);
-
-// 		// SDL_FreeSurface(joueur1);
-// 		// SDL_FreeSurface(joueur2);
-// 		// SDL_FreeSurface(plateau);
-// 	}
-// }
-
 void design_plateau(SDL_Surface* ecran, int design_plateau_numero){
 
 	SDL_Surface *plateau=NULL;
+	
 	if(design_plateau_numero==0){
-
 
 		SDL_Rect position_plateau, position_horizontale, position_verticale;
 		SDL_Surface *ligne_horizontale[7] = {NULL};
 		SDL_Surface *ligne_verticale[6] = {NULL};
-
 		plateau = SDL_CreateRGBSurface(SDL_HWSURFACE, 350, 420, 32, 0, 0, 0, 0);
 
 		//ligne horizontale
@@ -683,18 +794,16 @@ void design_plateau(SDL_Surface* ecran, int design_plateau_numero){
 		    SDL_FillRect(ligne_verticale[i], NULL, SDL_MapRGB(ecran->format, 225, 225, 225));
 		    SDL_BlitSurface(ligne_verticale[i], NULL, ecran, &position_verticale);
 		}
+
 		// FREE
-	    //lignes horizontale
-	    for (int i = 0 ; i < 7 ; i++)
-	        SDL_FreeSurface(ligne_horizontale[i]);
+		//lignes horizontale
+		for (int i = 0 ; i < 7 ; i++)
+			SDL_FreeSurface(ligne_horizontale[i]);
 
-	    //lignes verticale
-	    for (int i = 0 ; i < 6 ; i++)
-	        SDL_FreeSurface(ligne_verticale[i]);
+		//lignes verticale
+		for (int i = 0 ; i < 6 ; i++)
+			SDL_FreeSurface(ligne_verticale[i]);
 
-		// SDL_FreeSurface(joueur1);
-		// SDL_FreeSurface(joueur2);
-		// SDL_FreeSurface(plateau);
 	}else if(design_plateau_numero == 1){
 		SDL_Rect position_plateau;
 
@@ -716,7 +825,42 @@ void design_plateau(SDL_Surface* ecran, int design_plateau_numero){
 
 		SDL_SetColorKey(plateau, SDL_SRCCOLORKEY, SDL_MapRGB(plateau->format,255,255,255));
 		SDL_BlitSurface(plateau,NULL,ecran,&position_plateau);
+
+	}else if(design_plateau_numero == 3){
+		SDL_Rect position_plateau;
+
+		position_plateau.x = 225;
+		position_plateau.y=50;
+
+		plateau = SDL_LoadBMP("texture/plateau/plateau_3.bmp"); //charger dark brown plateau_1
+
+		SDL_SetColorKey(plateau, SDL_SRCCOLORKEY, SDL_MapRGB(plateau->format,255,255,255));
+		SDL_BlitSurface(plateau,NULL,ecran,&position_plateau);
+	}else if(design_plateau_numero == 4){
+		SDL_Rect position_plateau;
+
+		position_plateau.x = 225;
+		position_plateau.y=50;
+
+		plateau = SDL_LoadBMP("texture/plateau/plateau_4.bmp"); //charger dark brown plateau_1
+
+		SDL_SetColorKey(plateau, SDL_SRCCOLORKEY, SDL_MapRGB(plateau->format,255,255,255));
+		SDL_BlitSurface(plateau,NULL,ecran,&position_plateau);
+
+	}else if(design_plateau_numero == 5){
+		SDL_Rect position_plateau;
+
+		position_plateau.x = 225;
+		position_plateau.y=50;
+
+		plateau = SDL_LoadBMP("texture/plateau/plateau_5.bmp"); //charger dark brown plateau_1
+
+		SDL_SetColorKey(plateau, SDL_SRCCOLORKEY, SDL_MapRGB(plateau->format,255,255,255));
+		SDL_BlitSurface(plateau,NULL,ecran,&position_plateau);
 	}
+
+	SDL_FreeSurface(plateau);
+
 
 }
 
@@ -835,32 +979,12 @@ void ecran_plateau(SDL_Surface* ecran, int design_plateau_numero){
     SDL_Flip(ecran);
 
 	// FREE
-    TTF_CloseFont(police);
+	SDL_FreeSurface(joueur1);
+	SDL_FreeSurface(joueur2);
+	TTF_CloseFont(police);
+    TTF_CloseFont(police_joueur);
     TTF_Quit();
 }
-
-// void ecran_score(SDL_Surface* ecran){
-// 	SDL_Surface *titre = NULL;
-// 	 // *fond = NULL;
-// 	SDL_Rect pos_texte;
-// 	TTF_Font *police = NULL;
-// 	SDL_Color couleurNoire = {0, 0, 0};
-
-// 	fond_ecran_degrade(ecran);
-// 	TTF_Init();
-// 	// fond = IMG_Load("moraira.jpg");
-// 	police = TTF_OpenFont("asman.ttf", 40);
-
-// 	titre = TTF_RenderUTF8_Blended(police, "Tableau des scores", couleurNoire);
-
-// 	pos_texte.x = 250;
-//     pos_texte.y = 65;
-//     SDL_BlitSurface(titre, NULL, ecran, &pos_texte); /* Blit du texte */
-
-// 	TTF_CloseFont(police);
-//     TTF_Quit();
-// }
-
 
 int strlen2(char s[]){
 	int i=0;
@@ -1023,7 +1147,9 @@ void ecran_score(SDL_Surface* ecran){
 	retour4.h=22;
 	SDL_FillRect(ecran, &retour4, 0);
 	
-
+	SDL_FreeSurface(Classement);
+	SDL_FreeSurface(Historique);
+	SDL_FreeSurface(score);
     SDL_FreeSurface(titre);
     SDL_FreeSurface(bouton_retour);
 	TTF_CloseFont(police1);
@@ -1245,7 +1371,7 @@ void ecran_score(SDL_Surface* ecran){
 // 	return ordre;
 // }
 
-void ecran_choix_plateau(SDL_Surface* ecran){
+/*void ecran_choix_plateau(SDL_Surface* ecran){
 	SDL_Surface *titre = NULL, *choix_1 = NULL, *choix_2 = NULL, *texte_retour = NULL, *bouton_retour = NULL;
 	SDL_Rect position_titre, position_choix_1, position_choix_2,position_bouton_retour, position_texte_retour;
 	TTF_Font *police_titre = NULL, *police = NULL;
@@ -1301,7 +1427,88 @@ void ecran_choix_plateau(SDL_Surface* ecran){
 	SDL_FreeSurface(choix_2);
 	SDL_FreeSurface(bouton_retour);
 	SDL_FreeSurface(texte_retour);
+}*/
+
+void ecran_choix_plateau(SDL_Surface* ecran){
+	SDL_Surface *titre = NULL,*choix_0 = NULL, *choix_1 = NULL, *choix_2 = NULL, *choix_3 = NULL, *choix_4 = NULL, *choix_5 = NULL, *texte_retour = NULL, *bouton_retour = NULL;
+	SDL_Rect position_titre, position_choix_0, position_choix_1, position_choix_2, position_choix_3, position_choix_4, position_choix_5, position_bouton_retour, position_texte_retour;
+	TTF_Font *police_titre = NULL, *police = NULL;
+	SDL_Color couleurNoire = {0,0,0};
+
+	fond_ecran_degrade(ecran);
+
+	position_titre.x = 200;
+	position_titre.y = 65;
+  	position_choix_0.x = 140;
+  	position_choix_0.y = 200;
+	position_choix_1.x = 252;
+	position_choix_1.y = 200;
+	position_choix_2.x = 350;
+	position_choix_2.y = 200;
+	position_choix_3.x = 450;
+	position_choix_3.y = 200;
+	position_choix_4.x = 550;
+	position_choix_4.y = 200;
+	position_choix_5.x = 650;
+	position_choix_5.y = 200;
+
+	position_bouton_retour.x = 250;
+	position_bouton_retour.y = 390;
+	position_texte_retour.x = 350;
+	position_texte_retour.y = 400;
+
+	TTF_Init();
+
+	police_titre = TTF_OpenFont("Beech.ttf", 50);
+	police = TTF_OpenFont("asman.ttf", 30);
+
+	titre = TTF_RenderUTF8_Blended(police_titre, "Choix du plateau", couleurNoire);
+	texte_retour = TTF_RenderUTF8_Blended(police, "Retour", couleurNoire);
+
+	bouton_retour = SDL_CreateRGBSurface(SDL_HWSURFACE, 300, 55, 32, 100, 200, 150, 0);
+
+	SDL_FillRect(bouton_retour, NULL, SDL_MapRGB(ecran->format, 255, 255, 255));
+
+
+	position_texte_retour.x = 350;
+	position_texte_retour.y = 400;
+	SDL_BlitSurface(texte_retour, NULL, ecran, &position_texte_retour);
+
+
+  	choix_0 = SDL_CreateRGBSurface(SDL_HWSURFACE, 70, 70, 32, 0, 0, 0, 0);
+	choix_1 = SDL_LoadBMP("texture/plateau/chessboard11.bmp");
+	choix_2 = SDL_LoadBMP("texture/plateau/chessboard22.bmp");
+	choix_3 = SDL_LoadBMP("texture/plateau/chessboard33.bmp");
+	choix_4 = SDL_LoadBMP("texture/plateau/chessboard44.bmp");
+	choix_5 = SDL_LoadBMP("texture/plateau/chessboard55.bmp");
+
+	SDL_BlitSurface(titre, NULL, ecran, &position_titre);
+
+  	SDL_FillRect(choix_0, NULL, SDL_MapRGB(ecran->format, 90, 90, 90));
+  	SDL_BlitSurface(choix_0, NULL, ecran, &position_choix_0);
+	SDL_BlitSurface(choix_1, NULL, ecran, &position_choix_1);
+	SDL_BlitSurface(choix_2, NULL, ecran, &position_choix_2);
+	SDL_BlitSurface(choix_3, NULL, ecran, &position_choix_3);
+	SDL_BlitSurface(choix_4, NULL, ecran, &position_choix_4);
+	SDL_BlitSurface(choix_5, NULL, ecran, &position_choix_5);
+	SDL_BlitSurface(bouton_retour, NULL, ecran, &position_bouton_retour);
+	SDL_BlitSurface(texte_retour, NULL, ecran, &position_texte_retour);
+
+	TTF_CloseFont(police);
+	TTF_CloseFont(police_titre);
+	TTF_Quit();
+
+	SDL_FreeSurface(titre);
+	SDL_FreeSurface(choix_0);
+	SDL_FreeSurface(choix_1);
+	SDL_FreeSurface(choix_2);
+	SDL_FreeSurface(choix_3);
+	SDL_FreeSurface(choix_4);
+	SDL_FreeSurface(choix_5);
+	SDL_FreeSurface(bouton_retour);
+	SDL_FreeSurface(texte_retour);
 }
+
 
 void ecran_regles(SDL_Surface* ecran){
 	SDL_Surface *titre = NULL, *regles = NULL;

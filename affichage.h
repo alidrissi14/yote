@@ -18,6 +18,8 @@ void fond_ecran_degrade_noir(SDL_Surface* ecran);
 void ecran_principal(SDL_Surface* ecran);
 
 // PARA_JEU ecran_jvj(SDL_Surface* ecran);
+void ecran_jvj_pseudo(SDL_Surface* ecran, int joueur);
+void ecran_jvj_pseudo_reset(SDL_Surface* ecran, int joueur);
 void ecran_jvj(SDL_Surface* ecran);
 
 void affichage_victoire(SDL_Surface* ecran, int joueur);
