@@ -74,8 +74,10 @@ VARIABLE_JEU clic_mode_manger(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU va
 VARIABLE_JEU clic_selection_pour_deplacement(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU variable, int design_plateau_numero);
 VARIABLE_JEU clic_retirer_selection(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU variable, int design_plateau_numero);
 VARIABLE_JEU game_jvj(SDL_Surface* ecran, SDL_Event event, MYBOX ma_case, VARIABLE_JEU variable, PARA_JEU para_jeu, int design_plateau_numero);
+// VARIABLE_JEU game_jvia(SDL_Surface* ecran, SDL_Event event, MYBOX ma_case, VARIABLE_JEU variable, PARA_JEU para_jeu, int design_plateau_numero);
 
 int game(SDL_Surface* ecran, PARA_JEU para_jeu, int design_plateau_numero);
+int game2(SDL_Surface* ecran, PARA_JEU para_jeu, int design_plateau_numero);
 
 #endif
 

@@ -1,3 +1,22 @@
-Jessica Emmanuelle 24-0
-Duy Pierre 10-2 
-Duy Ali 0-1
+duy ali 6-2
+duy doruntine 1-0
+duy nicolas 1-0
+duy pierre 0-1
+
+joueur1 joueur2 0-1
+joueur1 joueur2 0-1
+joueur1 joueur2 1-0
+joueur1 joueur2 1-0
+joueur1 joueur2 1-0
+joueur1 joueur2 1-0
+joueur1 joueur2 1-0
+joueur1 joueur2 1-0
+joueur1 joueur2 1-0
+joueur1 joueur2 1-0
+joueur1 joueur2 1-0
+joueur1 joueur2 1-0
+joueur1 joueur2 1-0
+joueur1 joueur2 1-0
+joueur1 joueur2 1-0
+joueur1 joueur2 1-0
+joueur1 joueur2 1-0

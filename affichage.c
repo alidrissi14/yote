@@ -96,109 +96,9 @@ void fond_ecran_degrade_noir(SDL_Surface* ecran){
 	    SDL_FreeSurface(lignes[i]);
 }
 
-// void ecran_principal(SDL_Surface* ecran){
-
-// 	SDL_Surface *titre = NULL;
-// 	// *fond = NULL;
-// 	SDL_Surface *texte_jvj=NULL, *texte_jvia=NULL, *texte_score=NULL, *texte_regle=NULL, *texte_quit=NULL;
-// 	SDL_Surface *bouton_jvj=NULL, *bouton_jvia=NULL, *bouton_score=NULL, *bouton_regle=NULL, *bouton_quit=NULL;
-// 	SDL_Rect pos_bouton_jvj, pos_bouton_jvia, pos_bouton_score, pos_bouton_regle, pos_bouton_quit;
-// 	SDL_Rect pos_texte;
-// 	TTF_Font *police = NULL, *police_titre = NULL;
-// 	SDL_Color couleurNoire = {0, 0, 0};
-
-// 	fond_ecran_degrade(ecran);
-
-// 	TTF_Init();
-// 	// fond = IMG_Load("moraira.jpg");
-// 	police = TTF_OpenFont("asman.ttf", 30);
-// 	police_titre = TTF_OpenFont("Beech.ttf", 50);
-// 	titre = TTF_RenderUTF8_Blended(police_titre, "Yote", couleurNoire);
-// 	texte_jvj = TTF_RenderUTF8_Blended(police, "Joueur contre Joueur", couleurNoire);
-// 	texte_jvia = TTF_RenderUTF8_Blended(police, "Joueur contre Ordinateur", couleurNoire);
-// 	texte_score = TTF_RenderUTF8_Blended(police, "Tableau des scores", couleurNoire);
-// 	texte_regle = TTF_RenderUTF8_Blended(police, "Regle", couleurNoire);
-// 	texte_quit = TTF_RenderUTF8_Blended(police, "Quitter", couleurNoire);
-
-
-// 	bouton_jvj = SDL_CreateRGBSurface(SDL_HWSURFACE, 300, 55, 32, 100, 20, 50, 0);
-// 	bouton_jvia = SDL_CreateRGBSurface(SDL_HWSURFACE, 300, 55, 32, 100, 20, 50, 0);
-// 	bouton_score = SDL_CreateRGBSurface(SDL_HWSURFACE, 300, 55, 32, 100, 20, 50, 0);
-// 	bouton_regle = SDL_CreateRGBSurface(SDL_HWSURFACE, 300, 55, 32, 100, 20, 50, 0);
-// 	bouton_quit = SDL_CreateRGBSurface(SDL_HWSURFACE, 300, 55, 32, 100, 200, 150, 0);
-
-// 	pos_bouton_jvj.x = 250; pos_bouton_jvj.y = 180;
-// 	pos_bouton_jvia.x = 250; pos_bouton_jvia.y = 250;
-// 	pos_bouton_score.x = 250; pos_bouton_score.y = 320;
-// 	pos_bouton_regle.x = 250; pos_bouton_regle.y = 390;
-// 	pos_bouton_quit.x = 250; pos_bouton_quit.y = 460;
-
-//     SDL_FillRect(bouton_jvj, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
-//     SDL_BlitSurface(bouton_jvj, NULL, ecran, &pos_bouton_jvj); // Collage de la surface sur l'écran
-
-//     SDL_FillRect(bouton_jvia, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
-//     SDL_BlitSurface(bouton_jvia, NULL, ecran, &pos_bouton_jvia); // Collage de la surface sur l'écran
-
-//     SDL_FillRect(bouton_score, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
-//     SDL_BlitSurface(bouton_score, NULL, ecran, &pos_bouton_score); // Collage de la surface sur l'écran
-
-//     SDL_FillRect(bouton_regle, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
-//     SDL_BlitSurface(bouton_regle, NULL, ecran, &pos_bouton_regle); // Collage de la surface sur l'écran
-
-//     SDL_FillRect(bouton_quit, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
-//     SDL_BlitSurface(bouton_quit, NULL, ecran, &pos_bouton_quit); // Collage de la surface sur l'écran
-
-//     // pos_texte.x = 0;
-//     // pos_texte.y = 0;
-//     // SDL_BlitSurface(fond, NULL, ecran, &pos_texte); /* Blit du fond */
-
-//     pos_texte.x = 350;
-//     pos_texte.y = 65;
-//     SDL_BlitSurface(titre, NULL, ecran, &pos_texte); /* Blit du texte */
-
-//     pos_texte.x = 271;
-//     pos_texte.y = 192;
-//     SDL_BlitSurface(texte_jvj, NULL, ecran, &pos_texte); /* Blit du texte */
-
-//     pos_texte.x = 255;
-//     pos_texte.y = 265;
-//     SDL_BlitSurface(texte_jvia, NULL, ecran, &pos_texte); /* Blit du texte */
-    
-//     pos_texte.x = 288;
-//     pos_texte.y = 332;
-//     SDL_BlitSurface(texte_score, NULL, ecran, &pos_texte); /* Blit du texte */
-    
-//     pos_texte.x = 355;
-//     pos_texte.y = 405;
-//     SDL_BlitSurface(texte_regle, NULL, ecran, &pos_texte); /* Blit du texte */
-
-// 	pos_texte.x = 350;
-//     pos_texte.y = 472;
-//     SDL_BlitSurface(texte_quit, NULL, ecran, &pos_texte); /* Blit du texte */
-//     SDL_Flip(ecran);
-
-// 	//Free
-// 	SDL_FreeSurface(titre);
-//     SDL_FreeSurface(texte_jvj);
-//     SDL_FreeSurface(texte_jvia);
-//     SDL_FreeSurface(texte_score);
-//     SDL_FreeSurface(texte_regle);
-//     SDL_FreeSurface(texte_quit);
-
-//     SDL_FreeSurface(bouton_jvj);
-//     SDL_FreeSurface(bouton_jvia);
-//     SDL_FreeSurface(bouton_score);
-//     SDL_FreeSurface(bouton_regle);
-//     SDL_FreeSurface(bouton_quit);
-    	
-//     TTF_CloseFont(police);
-//     TTF_Quit();
-// }
-
 void ecran_principal(SDL_Surface* ecran){
 
 	SDL_Surface *titre = NULL;
-	// *fond = NULL;
 	SDL_Surface *texte_jvj=NULL, *texte_jvia=NULL, *texte_score=NULL, *texte_regle=NULL, *texte_quit=NULL;
 	SDL_Surface *bouton_jvj=NULL, *bouton_jvia=NULL, *bouton_score=NULL, *bouton_regle=NULL, *bouton_quit=NULL, *bouton_settings= NULL, *fond_bouton_settings= NULL;
 	SDL_Rect pos_bouton_jvj, pos_bouton_jvia, pos_bouton_score, pos_bouton_regle, pos_bouton_quit,pos_bouton_settings, pos_fond_bouton_settings;
@@ -308,7 +208,7 @@ void ecran_principal(SDL_Surface* ecran){
     TTF_Quit();
 }
 
-void ecran_jvj_pseudo(SDL_Surface* ecran, int joueur){
+void ecran_jvj_pseudo_rect(SDL_Surface* ecran, int joueur){
 	SDL_Surface *bouton_j1=NULL, *bouton_j2=NULL;
 	SDL_Rect pos_bouton_j1, pos_bouton_j2;
 	
@@ -334,36 +234,33 @@ void ecran_jvj_pseudo(SDL_Surface* ecran, int joueur){
     TTF_Quit();
 }
 
-void ecran_jvj_pseudo_reset(SDL_Surface* ecran, int joueur){
-	SDL_Surface *bouton_j1=NULL, *bouton_j2=NULL;
-	SDL_Rect pos_bouton_j1, pos_bouton_j2;
-	
-	bouton_j1 = SDL_CreateRGBSurface(SDL_HWSURFACE, 180, 55, 32, 100, 20, 50, 0);
-	bouton_j2 = SDL_CreateRGBSurface(SDL_HWSURFACE, 180, 55, 32, 100, 20, 50, 0);
-	
-    pos_bouton_j1.x = 160;			pos_bouton_j1.y = 150;
-    pos_bouton_j2.x = 460;			pos_bouton_j2.y = 150;
-    
-    if(joueur == 1){
-	    SDL_FillRect(bouton_j1, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
-	    SDL_BlitSurface(bouton_j1, NULL, ecran, &pos_bouton_j1);
-    }
-    
-    if(joueur == 2){
-	    SDL_FillRect(bouton_j2, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
-	    SDL_BlitSurface(bouton_j2, NULL, ecran, &pos_bouton_j2);
-    }
+void coche_case(SDL_Surface* ecran, int mode){
+	SDL_Surface *pion = NULL;
+	SDL_Rect position_pion;
 
-   	SDL_FreeSurface(bouton_j1);
-   	SDL_FreeSurface(bouton_j2); 
+	if(mode == 1){
+		position_pion.x=356;
+		position_pion.y=244;
+	}else{
+		position_pion.x=356;
+		position_pion.y=317;
+	}
 
-    TTF_Quit();
+	pion = SDL_LoadBMP("texture/pion_noir_50.bmp");
+	SDL_SetColorKey(pion, SDL_SRCCOLORKEY, SDL_MapRGB(pion->format, 0, 0, 255));
+
+    SDL_BlitSurface(pion, NULL, ecran, &position_pion);
+    SDL_Flip(ecran);
+
+    SDL_FreeSurface(pion);
 }
 
 void ecran_jvj(SDL_Surface* ecran){
-	SDL_Surface *titre= NULL, *texte_joueur=NULL, *bouton_j1=NULL, *texte_joueur2=NULL, *bouton_j2=NULL, *texte_mode=NULL,*nomJoueur1=NULL, *nomJoueur2=NULL;
+	SDL_Surface *titre= NULL, *texte_joueur=NULL, *bouton_j1=NULL, *texte_joueur2=NULL, *bouton_j2=NULL, *texte_mode=NULL;
+	// *nomJoueur1=NULL, *nomJoueur2=NULL;
 	SDL_Surface *texte_modenormal=NULL, *texte_modevariante, *bouton_modenormal=NULL, *bouton_modevariante=NULL, *bouton_valider=NULL, *bouton_annuler=NULL, *texte_valider=NULL, *texte_annuler=NULL;
-	SDL_Rect pos_texte, pos_j1, pos_bouton_j1, pos_j2, pos_bouton_j2, pos_mode, pos_modenormal, pos_modevariante,posNomJoueur1,posNomJoueur2;
+	SDL_Rect pos_texte, pos_j1, pos_bouton_j1, pos_j2, pos_bouton_j2, pos_mode, pos_modenormal, pos_modevariante;
+	 // posNomJoueur1, posNomJoueur2;
 	SDL_Rect pos_bouton_modenormal, pos_bouton_modevariante, pos_bouton_valider, pos_bouton_annuler, pos_texte_valider, pos_texte_annuler;
 	TTF_Font *police, *police_titre = NULL;
 	SDL_Color couleurNoire = {0, 0, 0};
@@ -381,8 +278,8 @@ void ecran_jvj(SDL_Surface* ecran){
 	texte_modevariante = TTF_RenderUTF8_Blended(police, "Variante", couleurNoire);
 	texte_valider = TTF_RenderUTF8_Blended(police, "OK", couleurNoire);
 	texte_annuler = TTF_RenderUTF8_Blended(police, "Retour", couleurNoire);
-	nomJoueur1 = TTF_RenderUTF8_Blended(police, "Joueur 1", couleurNoire);
-	nomJoueur2 = TTF_RenderUTF8_Blended(police, "Joueur 2", couleurNoire);
+	// nomJoueur1 = TTF_RenderUTF8_Blended(police, "Joueur 1", couleurNoire);
+	// nomJoueur2 = TTF_RenderUTF8_Blended(police, "Joueur 2", couleurNoire);
 	
 	bouton_j1 = SDL_CreateRGBSurface(SDL_HWSURFACE, 180, 55, 32, 100, 20, 50, 0);
 	bouton_j2 = SDL_CreateRGBSurface(SDL_HWSURFACE, 180, 55, 32, 100, 20, 50, 0);
@@ -391,7 +288,6 @@ void ecran_jvj(SDL_Surface* ecran){
 	bouton_valider = SDL_CreateRGBSurface(SDL_HWSURFACE, 100, 55, 32, 100, 20, 50, 0);
 	bouton_annuler = SDL_CreateRGBSurface(SDL_HWSURFACE, 150, 55, 32, 100, 20, 50, 0);
 	
-	
 	pos_texte.x = 150;				pos_texte.y = 65;
     pos_bouton_j1.x = 160;			pos_bouton_j1.y = 150;
     pos_bouton_j2.x = 460;			pos_bouton_j2.y = 150;
@@ -399,7 +295,6 @@ void ecran_jvj(SDL_Surface* ecran){
     pos_bouton_modevariante.x=350;	pos_bouton_modevariante.y = 315; 
     pos_bouton_valider.x = 250;		pos_bouton_valider.y = 450;
     pos_bouton_annuler.x = 415;		pos_bouton_annuler.y = 450;
- 
     
     SDL_FillRect(bouton_j1, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
     SDL_BlitSurface(bouton_j1, NULL, ecran, &pos_bouton_j1);
@@ -434,14 +329,15 @@ void ecran_jvj(SDL_Surface* ecran){
     SDL_BlitSurface(texte_valider, NULL, ecran, &pos_texte_valider);
     pos_texte_annuler.x = 460;		pos_texte_annuler.y = 465;
     SDL_BlitSurface(texte_annuler, NULL, ecran, &pos_texte_annuler);
-    posNomJoueur1.x = 182;			posNomJoueur1.y = 165;
-    SDL_BlitSurface(nomJoueur1, NULL, ecran, &posNomJoueur1);
-    posNomJoueur2.x = 482;			posNomJoueur2.y = 165;
-    SDL_BlitSurface(nomJoueur2, NULL, ecran, &posNomJoueur2);
+    // posNomJoueur1.x = 182;			posNomJoueur1.y = 165;
+    // SDL_BlitSurface(nomJoueur1, NULL, ecran, &posNomJoueur1);
+    // posNomJoueur2.x = 482;			posNomJoueur2.y = 165;
+    // SDL_BlitSurface(nomJoueur2, NULL, ecran, &posNomJoueur2);
 
     SDL_FreeSurface(titre); SDL_FreeSurface(texte_joueur); SDL_FreeSurface(bouton_j1);
     SDL_FreeSurface(texte_joueur2); SDL_FreeSurface(bouton_j2); SDL_FreeSurface(texte_mode);
-    SDL_FreeSurface(nomJoueur1); SDL_FreeSurface(nomJoueur2); SDL_FreeSurface(texte_modenormal);
+    // SDL_FreeSurface(nomJoueur1); SDL_FreeSurface(nomJoueur2); 
+    SDL_FreeSurface(texte_modenormal);
     SDL_FreeSurface(texte_modevariante); SDL_FreeSurface(bouton_modenormal); SDL_FreeSurface(bouton_modevariante);
     SDL_FreeSurface(bouton_annuler); SDL_FreeSurface(texte_valider); SDL_FreeSurface(texte_annuler);
     SDL_FreeSurface(bouton_valider);
@@ -454,20 +350,20 @@ void ecran_jvj_ecrire_pseudo(SDL_Surface* ecran, int joueur, char my_string[50])
 	SDL_Surface *titre = NULL;
 	SDL_Rect position;
 	TTF_Font *police = NULL;
-	// SDL_Color couleurBleu = {0, 100, 255};
-	SDL_Color couleurRouge = {255, 100, 0};
+	SDL_Color couleurBleu = {0, 100, 255};
+	// SDL_Color couleurRouge = {255, 100, 0};
 
 	TTF_Init();
-	police = TTF_OpenFont("asman.ttf", 40);
+	police = TTF_OpenFont("asman.ttf", 30);
 
-	titre = TTF_RenderUTF8_Blended(police, my_string, couleurRouge);
+	titre = TTF_RenderUTF8_Blended(police, my_string, couleurBleu);
 
 	if(joueur == 1){
-		position.x = 205;
-		position.y = 250;
+		position.x = 170;
+		position.y = 160;
 	}else{
-		position.x = 205;
-		position.y = 250;
+		position.x = 470;
+		position.y = 160;
 	}
 
 
@@ -581,28 +477,84 @@ void bouton_quit2(SDL_Surface* ecran){
 }
 
 void ecran_jvia(SDL_Surface* ecran){
-	SDL_Surface *titre = NULL;
-	 // *fond = NULL;
-	SDL_Rect pos_texte;
-	TTF_Font *police = NULL;
+	SDL_Surface *titre= NULL, *texte_joueur=NULL, *bouton_j1=NULL, *texte_mode=NULL;
+	SDL_Surface *texte_modenormal=NULL, *texte_modevariante, *bouton_modenormal=NULL, *bouton_modevariante=NULL, *bouton_valider=NULL, *bouton_annuler=NULL, *texte_valider=NULL, *texte_annuler=NULL;
+	SDL_Rect pos_texte, pos_j1, pos_bouton_j1, pos_mode, pos_modenormal, pos_modevariante;
+	SDL_Rect pos_bouton_modenormal, pos_bouton_modevariante, pos_bouton_valider, pos_bouton_annuler, pos_texte_valider, pos_texte_annuler;
+	TTF_Font *police, *police_titre = NULL;
 	SDL_Color couleurNoire = {0, 0, 0};
 
 	fond_ecran_degrade(ecran);
 	TTF_Init();
-	// fond = IMG_Load("moraira.jpg");
-	police = TTF_OpenFont("asman.ttf", 40);
+	police_titre = TTF_OpenFont("Beech.ttf", 50);
+	police = TTF_OpenFont("asman.ttf", 20);
 
-	titre = TTF_RenderUTF8_Blended(police, "Joueur contre IA", couleurNoire);
+	titre = TTF_RenderUTF8_Blended(police_titre, "Joueur contre Joueur", couleurNoire);
+	texte_joueur = TTF_RenderUTF8_Blended(police, "Joueur 1", couleurNoire);
+	texte_mode = TTF_RenderUTF8_Blended(police, "Mode de jeu", couleurNoire);
+	texte_modenormal = TTF_RenderUTF8_Blended(police, "Normal", couleurNoire);
+	texte_modevariante = TTF_RenderUTF8_Blended(police, "Variante", couleurNoire);
+	texte_valider = TTF_RenderUTF8_Blended(police, "OK", couleurNoire);
+	texte_annuler = TTF_RenderUTF8_Blended(police, "Retour", couleurNoire);
+	// nomJoueur1 = TTF_RenderUTF8_Blended(police, "Joueur 1", couleurNoire);
+	// nomJoueur2 = TTF_RenderUTF8_Blended(police, "Joueur 2", couleurNoire);
+	
+	bouton_j1 = SDL_CreateRGBSurface(SDL_HWSURFACE, 180, 55, 32, 100, 20, 50, 0);
+	bouton_modenormal = SDL_CreateRGBSurface(SDL_HWSURFACE, 65, 55, 32, 100, 20, 50, 0);
+	bouton_modevariante = SDL_CreateRGBSurface(SDL_HWSURFACE, 65, 55, 32, 100, 20, 50, 0);
+	bouton_valider = SDL_CreateRGBSurface(SDL_HWSURFACE, 100, 55, 32, 100, 20, 50, 0);
+	bouton_annuler = SDL_CreateRGBSurface(SDL_HWSURFACE, 150, 55, 32, 100, 20, 50, 0);
+	
+	pos_texte.x = 150;				pos_texte.y = 65;
+    pos_bouton_j1.x = 160;			pos_bouton_j1.y = 150;
+    pos_bouton_modenormal.x = 350;	pos_bouton_modenormal.y = 240;
+    pos_bouton_modevariante.x=350;	pos_bouton_modevariante.y = 315; 
+    pos_bouton_valider.x = 250;		pos_bouton_valider.y = 450;
+    pos_bouton_annuler.x = 415;		pos_bouton_annuler.y = 450;
+    
+    SDL_FillRect(bouton_j1, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
+    SDL_BlitSurface(bouton_j1, NULL, ecran, &pos_bouton_j1);
+    
+    SDL_FillRect(bouton_modenormal, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
+    SDL_BlitSurface(bouton_modenormal, NULL, ecran, &pos_bouton_modenormal);
+    
+    SDL_FillRect(bouton_modevariante, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
+    SDL_BlitSurface(bouton_modevariante, NULL, ecran, &pos_bouton_modevariante);
+    
+    SDL_FillRect(bouton_valider, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
+    SDL_BlitSurface(bouton_valider, NULL, ecran, &pos_bouton_valider);
 
-	pos_texte.x = 250;
-    pos_texte.y = 65;
-    SDL_BlitSurface(titre, NULL, ecran, &pos_texte); /* Blit du texte */
+	SDL_FillRect(bouton_annuler, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)); 
+    SDL_BlitSurface(bouton_annuler, NULL, ecran, &pos_bouton_annuler);
 
-    SDL_FreeSurface(titre);
+	SDL_BlitSurface(titre, NULL, ecran, &pos_texte); /* Blit du texte */
+	pos_j1.x = 80;					pos_j1.y = 165;
+    SDL_BlitSurface(texte_joueur, NULL, ecran, &pos_j1);
+    pos_mode.x = 80;				pos_mode.y = 250;
+    SDL_BlitSurface(texte_mode, NULL, ecran, &pos_mode);
+    pos_modenormal.x = 250;			pos_modenormal.y = 250;
+    SDL_BlitSurface(texte_modenormal, NULL, ecran, &pos_modenormal);
+    pos_modevariante.x = 250;		pos_modevariante.y = 325;
+    SDL_BlitSurface(texte_modevariante, NULL, ecran, &pos_modevariante);
+    pos_texte_valider.x = 285;		pos_texte_valider.y = 465;
+    SDL_BlitSurface(texte_valider, NULL, ecran, &pos_texte_valider);
+    pos_texte_annuler.x = 460;		pos_texte_annuler.y = 465;
+    SDL_BlitSurface(texte_annuler, NULL, ecran, &pos_texte_annuler);
+    // posNomJoueur1.x = 182;			posNomJoueur1.y = 165;
+    // SDL_BlitSurface(nomJoueur1, NULL, ecran, &posNomJoueur1);
+    // posNomJoueur2.x = 482;			posNomJoueur2.y = 165;
+    // SDL_BlitSurface(nomJoueur2, NULL, ecran, &posNomJoueur2);
+
+    SDL_FreeSurface(titre); SDL_FreeSurface(texte_joueur); SDL_FreeSurface(bouton_j1);
+    SDL_FreeSurface(texte_mode);
+    SDL_FreeSurface(texte_modenormal);
+    SDL_FreeSurface(texte_modevariante); SDL_FreeSurface(bouton_modenormal); SDL_FreeSurface(bouton_modevariante);
+    SDL_FreeSurface(bouton_annuler); SDL_FreeSurface(texte_valider); SDL_FreeSurface(texte_annuler);
+    SDL_FreeSurface(bouton_valider);
+    TTF_CloseFont(police_titre);
 	TTF_CloseFont(police);
     TTF_Quit();
 }
-
 
 /*void reset_case_plateau(SDL_Surface* ecran, int ligne, int colonne, int design_plateau_numero){
 	SDL_Surface* rect = NULL;
@@ -860,8 +812,6 @@ void design_plateau(SDL_Surface* ecran, int design_plateau_numero){
 	}
 
 	SDL_FreeSurface(plateau);
-
-
 }
 
 void affichage_add_pion(SDL_Surface* ecran, int ligne, int colonne, int couleur){
@@ -998,11 +948,11 @@ int strlen2(char s[]){
 void ecran_score(SDL_Surface* ecran){
 	
 	SDL_Rect pos_texte1;//titre
-	SDL_Rect pos_texte2;//retour
+	// SDL_Rect pos_texte2;//retour
 	SDL_Rect pos_texte3;//classement
 	SDL_Rect pos_texte4;//historique
 	SDL_Rect pos_texte5;//score
-	SDL_Surface *bouton_retour = NULL;
+	// SDL_Surface *bouton_retour = NULL;
 	SDL_Surface *titre = NULL;
 	SDL_Surface *Classement = NULL;
 	SDL_Surface *Historique = NULL;
@@ -1027,22 +977,22 @@ void ecran_score(SDL_Surface* ecran){
 	
 
 	titre = TTF_RenderUTF8_Blended(police1, "Tableau des scores", couleurNoire);
-	bouton_retour = TTF_RenderUTF8_Blended(police2, "Retour", couleurNoire);
+	// bouton_retour = TTF_RenderUTF8_Blended(police2, "Retour", couleurNoire);
 	Classement = TTF_RenderUTF8_Blended(police2, "Classement", couleurNoire);
 	Historique = TTF_RenderUTF8_Blended(police2, "Historique", couleurNoire);
 	score = TTF_RenderUTF8_Blended(police2, chaine, couleurNoire);
 
 	pos_texte1.x = 250;
     pos_texte1.y = 65;
-    pos_texte2.x = 105;
-    pos_texte2.y = 455;
+    // pos_texte2.x = 105;
+    // pos_texte2.y = 455;
     pos_texte3.x = 105;
     pos_texte3.y = 105;
     pos_texte4.x = 405;
     pos_texte4.y = 105;
    
     SDL_BlitSurface(titre, NULL, ecran, &pos_texte1); /* Blit du texte */
-    SDL_BlitSurface(bouton_retour, NULL, ecran, &pos_texte2); /* Blit du texte */
+    // SDL_BlitSurface(bouton_retour, NULL, ecran, &pos_texte2); /* Blit du texte */
     SDL_BlitSurface(Classement, NULL, ecran, &pos_texte3); /* Blit du texte */
     SDL_BlitSurface(Historique, NULL, ecran, &pos_texte4); /* Blit du texte */
  
@@ -1122,125 +1072,239 @@ void ecran_score(SDL_Surface* ecran){
 	lv3.w=2;
 	lv3.h=300;
 	SDL_FillRect(ecran,&lv3,0);
-	SDL_Rect retour1;
-	retour1.x=100;
-	retour1.y=450;
-	retour1.w=80;
-	retour1.h=2;
-	SDL_FillRect(ecran,&retour1,0);
-	SDL_Rect retour2;
-	retour2.x=100;
-	retour2.y=450;
-	retour2.w=2;
-	retour2.h=20;
-	SDL_FillRect(ecran,&retour2,0);
-	SDL_Rect retour3;
-	retour3.x=100;
-	retour3.y=470;
-	retour3.w=80;
-	retour3.h=2;
-	SDL_FillRect(ecran,&retour3,0);
-	SDL_Rect retour4;
-	retour4.x=180;
-	retour4.y=450;
-	retour4.w=2;
-	retour4.h=22;
-	SDL_FillRect(ecran, &retour4, 0);
+	// SDL_Rect retour1;
+	// retour1.x=100;
+	// retour1.y=450;
+	// retour1.w=80;
+	// retour1.h=2;
+	// SDL_FillRect(ecran,&retour1,0);
+	// SDL_Rect retour2;
+	// retour2.x=100;
+	// retour2.y=450;
+	// retour2.w=2;
+	// retour2.h=20;
+	// SDL_FillRect(ecran,&retour2,0);
+	// SDL_Rect retour3;
+	// retour3.x=100;
+	// retour3.y=470;
+	// retour3.w=80;
+	// retour3.h=2;
+	// SDL_FillRect(ecran,&retour3,0);
+	// SDL_Rect retour4;
+	// retour4.x=180;
+	// retour4.y=450;
+	// retour4.w=2;
+	// retour4.h=22;
+	// SDL_FillRect(ecran, &retour4, 0);
+
+	bouton_quit2(ecran);
 	
 	SDL_FreeSurface(Classement);
 	SDL_FreeSurface(Historique);
 	SDL_FreeSurface(score);
     SDL_FreeSurface(titre);
-    SDL_FreeSurface(bouton_retour);
+    // SDL_FreeSurface(bouton_retour);
 	TTF_CloseFont(police1);
 	TTF_CloseFont(police2);
     TTF_Quit();
-	
 }
 
-// int pseudo_presents( char* pseudo1, char* pseudo2){
-	
-// 	int pseudo1_trouver=0;
-// 	int pseudo2_trouver=0;
-// 	char chaine[50];
-	
-// 	int taille_pseudo1=strlen(pseudo1);
-// 	int taille_pseudo2=strlen(pseudo2);
-// 	FILE* fichier = NULL;
-	
-	
-// 	fichier = fopen("score.txt","r+");
-// 	while((fgets(chaine,taille_pseudo1+1,fichier)!=NULL)&&(pseudo1_trouver==0)){
-// 		if(strstr(chaine,pseudo1)!=NULL){
-// 			pseudo1_trouver=1;
-// 		}
-// 	}
-
-// 	fclose(fichier);
-// 	fichier = fopen("score.txt","r+");
-// 	while((fgets(chaine,taille_pseudo2+1,fichier)!=NULL)&&(pseudo2_trouver==0)){
-// 		if(strstr(chaine,pseudo2)!=NULL){
-// 			pseudo2_trouver=1;
-// 		}
-// 	}
-// 	fclose(fichier);
-	
-// 	if( (pseudo1_trouver==1) && (pseudo2_trouver==1) ){
-// 		return 3;
-// 	}else if((pseudo1_trouver==1)&&(pseudo2_trouver==0)){
-// 		return 1;
-// 	}else if((pseudo1_trouver==0)&&(pseudo2_trouver==1)){
-// 		return 2;
-// 	}else if((pseudo1_trouver==0)&&(pseudo2_trouver==0)){
-// 		return 0;
-// 	}
-
-// }
-
-// int duel_present( char* pseudo1, char* pseudo2){
-// 	char* pseudo;
-// 	int taille_pseudo=strlen(pseudo);
-// 	int pseudo_trouver=0;
-// 	char chaine[50];
-// 	pseudo=contraction_pseudo(pseudo1,pseudo2);
-	
-	
-	
-// 	FILE* fichier = NULL;
-// 	fichier = fopen("score.txt","r+");
-	
-// 	while((fgets(chaine,taille_pseudo+1,fichier)!=NULL)&&(pseudo_trouver==0)){
-// 		if(strstr(chaine,pseudo)!=NULL){
-// 			pseudo_trouver=1;
-// 		}
-// 	}
-
-// 	fclose(fichier);
-// 	if(pseudo_trouver==1){
-// 		return 1;
-// 	}else if(pseudo_trouver==0){
-		
-// 		return 0;
-		
-// 	}
-// }
-
-// char* contraction_pseudo(char*pseudo1, char*pseudo2){
+// char* contraction_pseudo(char*pseudo1, char*pseudo2) {
+// 	printf("contraction_pseudo\n");
 // 	int taille_pseudo1=strlen(pseudo1);
 // 	int taille_pseudo2=strlen(pseudo2);
 // 	char* pseudo=NULL;
 // 	char* vs=" vs ";
 	
-// 	pseudo=(char*)malloc((taille_pseudo1+taille_pseudo2)*sizeof(char));
+// 	pseudo = (char*) malloc((taille_pseudo1+taille_pseudo2)*sizeof(char));
 // 	strcpy(pseudo,pseudo1);
 // 	strcat(pseudo,vs);
 // 	strcat(pseudo,pseudo2);
+
+// 	free(pseudo);
 	
 // 	return pseudo;	
 // }
 
-// int ecriture_historique_fichier(int duel_presents,char* pseudo1,char* pseudo2,int victoire){
-// 	char* pseudo=contraction_pseudo(pseudo1, pseudo2);
+// char* concat_pseudo(char* pseudo1, char* pseudo2) {
+// 	printf("contraction_pseudo\n");
+
+// 	int taille1=strlen(pseudo1);
+// 	int taille2=strlen(pseudo2);
+
+// 	char my_string[taille1 + taille2 + 1];
+// 	char* espace=" ";
+	
+// 	strcpy(my_string, pseudo1);
+// 	strcat(my_string, espace);
+// 	strcat(my_string, pseudo2);
+	
+// 	return my_string;	
+// }
+
+
+
+int pseudo_presents(char* pseudo1, char* pseudo2){
+// 0 aucun trouver
+// 1 seulement le premier
+// 2 seulement le deuxieme
+// 3 si les deux
+	int pseudo1_trouver=0;
+	int pseudo2_trouver=0;
+	char chaine[50];
+	
+	int taille_pseudo1=strlen(pseudo1);
+	int taille_pseudo2=strlen(pseudo2);
+	FILE* fichier = NULL;
+	
+	
+	fichier = fopen("score.txt","r+");
+	while((fgets(chaine, taille_pseudo1+1, fichier)!=NULL) && (pseudo1_trouver==0)){
+		if(strstr(chaine,pseudo1)!=NULL){
+			pseudo1_trouver=1;
+		}
+	}
+	fclose(fichier);
+
+	fichier = fopen("score.txt","r+");
+	while((fgets(chaine, taille_pseudo2+1, fichier)!=NULL) && (pseudo2_trouver==0)){
+		if(strstr(chaine,pseudo2)!=NULL){
+			pseudo2_trouver=1;
+		}
+	}
+	fclose(fichier);
+	
+	if( (pseudo1_trouver==1) && (pseudo2_trouver==1) )
+		return 3;
+	else if((pseudo1_trouver==1)&&(pseudo2_trouver==0))
+		return 1;
+	else if((pseudo1_trouver==0)&&(pseudo2_trouver==1))
+		return 2;
+	else if((pseudo1_trouver==0)&&(pseudo2_trouver==0))
+		return 0;
+	
+	return 0;
+}
+
+int duel_present( char* pseudo1, char* pseudo2){
+
+	char my_string1[100];
+	char my_string2[100];
+	int taille_max=100;
+
+	int flag1=0;
+	int flag2=0;
+
+	char chaine[50];
+	char espace[] = " ";
+
+	strcpy(my_string1, pseudo1);
+	strcat(my_string1, espace);
+	strcat(my_string1, pseudo1);
+
+	strcpy(my_string2, pseudo2);
+	strcat(my_string2, espace);
+	strcat(my_string2, pseudo2);
+	
+	FILE* fichier = NULL;
+	fichier = fopen("score.txt","r+");
+	
+	while( fgets(chaine, taille_max, fichier)!=NULL && flag1==0 ){
+		if(strstr(chaine, my_string1) != NULL){
+			flag1=1;
+		}
+	}
+
+	while( fgets(chaine, taille_max, fichier)!=NULL && flag2==0 ){
+		if(strstr(chaine, my_string2)!=NULL){
+			flag2=1;
+		}
+	}
+	fclose(fichier);
+
+	if(flag1)
+		return 1;
+	else if(flag2)
+		return 2;
+
+	return 0;
+
+}
+
+void ecriture_score_victoire(char* pseudo1, char* pseudo2, int victoire){
+	printf("ecriture_score_victoire\n");
+
+	// char chaine[50];
+	// char string_max[100];
+	char my_string[100];
+	char espace[] = " ";
+
+	int taille1 = strlen(pseudo1);
+	int taille2 = strlen(pseudo2);
+
+	int duel = -1;
+	duel = duel_present(pseudo1, pseudo2);
+
+	char my_string2[4];
+	FILE* fichier = NULL;
+
+	// int flag;
+	// int score1, score2;
+
+	// int count = 0;
+
+	// int taille_myString = taille1 + taille2 +2;
+
+	if(duel == 0){
+		fichier = fopen("score.txt","a");
+		if(victoire==1){
+			strcpy(my_string2, "1-0\0");		
+		}else if(victoire==2){
+			strcpy(my_string2, "0-1\0");
+		}
+
+		strcpy(my_string, pseudo1);
+		strcat(my_string, espace);
+		strcat(my_string, pseudo2);
+		my_string[taille1 + taille2 + 2] = '\0';
+		strcat(my_string, espace);
+		strcat(my_string, my_string2);
+		strcat(my_string, "\n");
+		fputs(my_string, fichier);
+
+	}
+	// else if(duel == 1){
+	// 	fichier = fopen("score.txt","r+");
+
+	// 	char pseudo* = concat_pseudo(pseudo1, pseudo2);
+
+	// 	while( fgets(chaine, string_max, fichier !=NULL) && flag==0 ){
+	// 		count++;
+	// 		if(strstr(chaine, my_string)!=NULL){
+	// 			flag=1;
+	// 		}
+	// 	}
+		
+	// 	fseek(fichier, 0, SEEK_SET);
+	// 	fseek(fichier, count*taille_myString, SEEK_SET);
+	// 	fscanf(fichier, "%d-%d", &score1, &score2);
+		
+	// 	if(victoire==1)
+	// 		score1=score1++;
+		
+	// 	if(victoire==2)
+	// 		score2=score2++;
+		
+	// 	fseek(fichier, count*taille_myString, SEEK_SET);
+	// 	fprintf(fichier, " %d-%d\n", score1, score2);
+	// }
+
+	fclose(fichier);
+}
+
+// void ecriture_historique_fichier(char* pseudo1, char* pseudo2, int victoire) {
+// 	printf("ecriture_historique_fichier\n");
+// 	char* pseudo=concat_pseudo(pseudo1, pseudo2);
 // 	int i=0;//tableau classement
 // 	int j=0;//itteration reecriture
 // 	char chaine[50];
@@ -1248,19 +1312,24 @@ void ecran_score(SDL_Surface* ecran){
 // 	int pseudo_trouver=0;
 // 	int score1=1;
 // 	int score2=0;
-// 	char*nouveau_pseudo=NULL;
+// 	char* nouveau_pseudo=NULL;
 // 	int nouveau_score1=0;
 // 	int nouveau_score2=0;
-	
+
+// 	int duel_presents = duel_present( pseudo1, pseudo2);
+
 // 	FILE* fichier = NULL;
 // 	fichier = fopen("score.txt","r+");
+
 // 	if(duel_presents==0){
+
 // 		fseek(fichier,0,SEEK_END);
 // 		fputs(pseudo,fichier);
 	
 // 		fclose(fichier);
 	
 // 		fichier = fopen("score.txt","r+");
+// 		printf("victoire:%d\n", victoire);
 	
 // 		if(victoire==1){
 // 			nouveau_score1=1;
@@ -1272,12 +1341,12 @@ void ecran_score(SDL_Surface* ecran){
 // 			nouveau_score1=0;
 // 			nouveau_score2=1;
 // 			fseek(fichier,0,SEEK_END);
-			
 // 			fprintf(fichier," %d-%d\n",nouveau_score1,nouveau_score2);
 // 		}
-// 			fclose(fichier);
+// 		fclose(fichier);
 			
-// 	}else if(duel_presents==1){
+// 	}
+// 	else if(duel_presents==1){
 // 		while((fgets(chaine,taille_pseudo+1,fichier)!=NULL)&&(pseudo_trouver==0)){
 // 			j=j+1;
 // 			if(strstr(chaine,pseudo)!=NULL){
@@ -1286,20 +1355,21 @@ void ecran_score(SDL_Surface* ecran){
 // 		}
 		
 // 		fseek(fichier,0,SEEK_SET);
-// 			fseek(fichier,j*taille_pseudo,SEEK_SET);
-// 			fscanf(fichier,"%d-%d",&score1,&score2);
-			
-// 			if(victoire==1){
-// 				score1=score1+1;
-// 			}
-// 			if(victoire==2){
-// 				score2=score2+1;
-// 			}
-// 			fseek(fichier,j*taille_pseudo,SEEK_SET);
-// 			fprintf(fichier," %d-%d\n",score1,score2);
-// 			fclose(fichier);
+// 		fseek(fichier,j*taille_pseudo,SEEK_SET);
+// 		fscanf(fichier,"%d-%d",&score1,&score2);
+		
+// 		if(victoire==1){
+// 			score1=score1+1;
+// 		}
+// 		if(victoire==2){
+// 			score2=score2+1;
+// 		}
+// 		fseek(fichier,j*taille_pseudo,SEEK_SET);
+// 		fprintf(fichier," %d-%d\n",score1,score2);
+// 		fclose(fichier);
 // 	return 4;
 // 	}
+
 // }
 
 // classement* ecriture_classement(void) {
@@ -1370,64 +1440,6 @@ void ecran_score(SDL_Surface* ecran){
 		
 // 	return ordre;
 // }
-
-/*void ecran_choix_plateau(SDL_Surface* ecran){
-	SDL_Surface *titre = NULL, *choix_1 = NULL, *choix_2 = NULL, *texte_retour = NULL, *bouton_retour = NULL;
-	SDL_Rect position_titre, position_choix_1, position_choix_2,position_bouton_retour, position_texte_retour;
-	TTF_Font *police_titre = NULL, *police = NULL;
-	SDL_Color couleurNoire = {0,0,0};
-
-	fond_ecran_degrade(ecran);
-
-	position_titre.x = 200;
-	position_titre.y = 65;
-	position_choix_1.x = 240;
-	position_choix_1.y = 150;
-	position_choix_2.x = 450;
-	position_choix_2.y = 150;
-	position_bouton_retour.x = 250;
-	position_bouton_retour.y = 390;
-	position_texte_retour.x = 350;
-	position_texte_retour.y = 400;
-
-	TTF_Init();
-
-	police_titre = TTF_OpenFont("Beech.ttf", 50);
-	police = TTF_OpenFont("asman.ttf", 30);
-
-	titre = TTF_RenderUTF8_Blended(police_titre, "Choix du plateau", couleurNoire);
-	texte_retour = TTF_RenderUTF8_Blended(police, "Retour", couleurNoire);
-
-	bouton_retour = SDL_CreateRGBSurface(SDL_HWSURFACE, 300, 55, 32, 100, 200, 150, 0);
-
-	SDL_FillRect(bouton_retour, NULL, SDL_MapRGB(ecran->format, 255, 255, 255));
-
-
-	position_texte_retour.x = 350;
-	position_texte_retour.y = 400;
-	SDL_BlitSurface(texte_retour, NULL, ecran, &position_texte_retour);
-
-
-	choix_1 = SDL_LoadBMP("texture/plateau/chessboard11.bmp");
-	choix_2 = SDL_LoadBMP("texture/plateau/chessboard22.bmp");
-
-
-	SDL_BlitSurface(titre, NULL, ecran, &position_titre);
-	SDL_BlitSurface(choix_1, NULL, ecran, &position_choix_1);
-	SDL_BlitSurface(choix_2, NULL, ecran, &position_choix_2);
-	SDL_BlitSurface(bouton_retour, NULL, ecran, &position_bouton_retour);
-	SDL_BlitSurface(texte_retour, NULL, ecran, &position_texte_retour);
-
-
-	TTF_CloseFont(police_titre);
-	TTF_Quit();
-
-	SDL_FreeSurface(titre);
-	SDL_FreeSurface(choix_1);
-	SDL_FreeSurface(choix_2);
-	SDL_FreeSurface(bouton_retour);
-	SDL_FreeSurface(texte_retour);
-}*/
 
 void ecran_choix_plateau(SDL_Surface* ecran){
 	SDL_Surface *titre = NULL,*choix_0 = NULL, *choix_1 = NULL, *choix_2 = NULL, *choix_3 = NULL, *choix_4 = NULL, *choix_5 = NULL, *texte_retour = NULL, *bouton_retour = NULL;

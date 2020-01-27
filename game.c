@@ -220,8 +220,6 @@ VARIABLE_JEU clic_case_libre(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU var
 // Place un pion sur le plateau
 // Retirer dans la réserve
 
-	printf("clic_case_libre\n");
-
 	if(variable.tour%2 == 1 && variable.jeton_restant_noir > 0){
 		affichage_add_pion(ecran, ma_case.ligne, ma_case.colonne, variable.tour%2);	
 		variable.jeton_restant_noir--;
@@ -244,8 +242,6 @@ VARIABLE_JEU clic_case_libre(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU var
 VARIABLE_JEU clic_deplacement_pion(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU variable,int design_plateau_numero){
 // Deplace un pion sur le plateau
 // Sur la SDL et l'array
-
-	printf("clic_deplacement_pion\n");
 
 	variable.array[variable.pion_select.ligne][variable.pion_select.colonne] = 0;
 	reset_case_plateau(ecran, variable.pion_select.ligne, variable.pion_select.colonne,design_plateau_numero);
@@ -290,8 +286,6 @@ VARIABLE_JEU efface_pion_manger(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU 
 
 VARIABLE_JEU clic_manger_pion(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU variable,int design_plateau_numero){
 // Le clic qui permet de déplacer le pion en mangeant un pion
-	
-	printf("clic_manger_pion\n");
 
 	int mode_manger = -1;
 
@@ -327,7 +321,6 @@ VARIABLE_JEU clic_manger_pion(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU va
 VARIABLE_JEU clic_mode_manger(SDL_Surface* ecran, MYBOX ma_case, VARIABLE_JEU variable,int design_plateau_numero){
 // Mange un pion du mode manger (juste après avoir manger un pion)
 	if( variable.array[ma_case.ligne][ma_case.colonne] == (variable.tour%2)+1 ){
-		printf("clic_manger_pion\n");
 		reset_case_plateau(ecran, ma_case.ligne, ma_case.colonne,design_plateau_numero);
 		variable.array[ma_case.ligne][ma_case.colonne]=0;
 		variable.tour++;
@@ -340,7 +333,6 @@ VARIABLE_JEU clic_selection_pour_deplacement(SDL_Surface* ecran, MYBOX ma_case, 
 //Selection de pion pour déplacement
 
 	if( variable.array[ma_case.ligne][ma_case.colonne] != variable.tour%2+1 ){
-		printf("clic_selection_pour_deplacement\n");
 		if( variable.pion_select.flag == 0 ){ // Si pas de déjà pion select
 			affichage_add_pion(ecran, ma_case.ligne, ma_case.colonne, (variable.tour%2)+2); //changer couleur du pion select
 			variable.pion_select=set_PION(1, ma_case.ligne, ma_case.colonne);
@@ -412,10 +404,7 @@ VARIABLE_JEU game_jvj(SDL_Surface* ecran, SDL_Event event, MYBOX ma_case, VARIAB
 	return variable;
 }
 
-
-
 int game(SDL_Surface* ecran, PARA_JEU para_jeu, int design_plateau_numero){
-	// printf("aaaaaaa\n");
 
 	SDL_Event event; 
 	MYBOX ma_case;
@@ -425,8 +414,6 @@ int game(SDL_Surface* ecran, PARA_JEU para_jeu, int design_plateau_numero){
 	int victoire = 0;
 
 	variable=init_VARIABLE_JEU(variable);
-	// variable.jeton_restant_blanc=1;
-	// variable.jeton_restant_noir=1;
 
 	while (continuer) {
 
@@ -438,18 +425,14 @@ int game(SDL_Surface* ecran, PARA_JEU para_jeu, int design_plateau_numero){
     	if(fin_de_jeu == 1 && variable.tour > 2){
     		affichage_victoire(ecran, 1);
     		victoire = 1;
+    		continuer=0;
     		// printf("Joueur 1 gagnant!\n");
     	}else if (fin_de_jeu == 2 && variable.tour > 2){
     		affichage_victoire(ecran, 2);
     		victoire = 2;
-    		printf("Joueur 2 gagnant!\n");
+    		continuer=0;
+    		// printf("Joueur 2 gagnant!\n");
     	}
-
-
-
-    	// printf("blanc: %d \n", variable.jeton_restant_blanc);
-    	// printf("noir: %d \n", variable.jeton_restant_noir);
-    	
 
 		if ( pion_restant_tab( variable, (variable.tour%2)+1 ) == 0 ){
 			variable.flag_manger = 0;
@@ -497,5 +480,195 @@ int game(SDL_Surface* ecran, PARA_JEU para_jeu, int design_plateau_numero){
     	SDL_Flip(ecran); /* Mise à jour de l'écran */
     }
 
-    return 0;
+    return victoire;
 }
+
+VARIABLE_JEU tour_ia_facile(SDL_Surface* ecran, VARIABLE_JEU variable, int design_plateau_numero){
+	int move = mon_aleatoire(0,2);
+    int aleat1,aleat2;
+    // int s, k;
+    int fin = 0;
+    srand(time(NULL));
+    // variable.tour++;
+    MYBOX ma_case;
+
+    // printf("move: %d\n", move);
+
+    //verifie si il y a un piont a manger et le mange
+
+  //   for( s=0; s<6; s++){
+		// for( k=0; k<5; k++){
+  //               if(variable.array[s][k]==2){
+  //                   if(variable.array[s+1][k]==1&&manger_possible(variable,s+2,k)==1){
+  //                       variable.array[s][k]=0;
+  //                       variable.array[s+2][k]=2;
+  //                       variable.array[s+1][k]=0;
+  //                       return variable;
+  //                   }else if(variable.array[s-1][k]==1&&manger_possible(variable,s-2,k)==1){
+  //                       variable.array[s][k]=0;
+  //                       variable.array[s-2][k]=2;
+  //                       variable.array[s-1][k]=0;
+  //                       return variable;
+  //                   }else if(variable.array[s][k+1]==1&&manger_possible(variable,s,k+2)==1){
+  //                       variable.array[s][k]=0;
+  //                       variable.array[s][k+2]=2;
+  //                       variable.array[s][k+1]=0;
+  //                       return variable;
+  //                   }else if(variable.array[s][k-1]==1&&manger_possible(variable,s,k-2)==1){
+  //                       variable.array[s][k]=0;
+  //                       variable.array[s][k-2]=2;
+  //                       variable.array[s][k-1]=0;
+  //                       return variable;
+  //                   }
+  //               }
+		// }
+  //   }
+
+    //verifie et fais bouger un pion
+	// if(move == 0){
+	// 	while(fin==0){
+ //            aleat1=mon_aleatoire(0,6);
+ //            aleat2=mon_aleatoire(0,5);
+ //            if(variable.array[aleat1][aleat2]==2){
+ //            	variable.pion_select.ligne=aleat1;
+ //            	variable.pion_select.colonne=aleat2;
+
+
+ //            	ma_case.ligne=aleat1;
+	//             ma_case.colonne=aleat2;
+
+ //            	aleat1=mon_aleatoire(0,4);
+
+ //            	if(aleat1 == 0){
+ //            		ma_case.ligne++;
+ //            	}else if(aleat1 == 1){
+ //            		ma_case.ligne--;
+ //            	}else if(aleat1 == 2){
+ //            		ma_case.colonne++;
+ //            	}else{
+ //            		ma_case.colonne--;
+ //            	}
+
+ //            	variable=clic_deplacement_pion(ecran, ma_case, variable, design_plateau_numero);
+
+ //            	return variable;
+ //            }
+	//     }
+	// }
+
+    //place un piont si possible
+    // if(move == 1){	
+	    if (variable.jeton_restant_blanc!=0){
+	        while(fin==0){
+	            aleat1=mon_aleatoire(0,6);
+	            aleat2=mon_aleatoire(0,5);
+	            if(variable.array[aleat1][aleat2]==0){
+	            	variable.array[aleat1][aleat2]=2;
+	            	ma_case.ligne=aleat1;
+	            	ma_case.colonne=aleat2;
+	            	variable=clic_case_libre(ecran, ma_case, variable);
+	            	return variable;
+	            }
+	        }
+	    }
+    // }
+	    
+    return variable;
+}
+
+
+int mon_aleatoire(int a, int b){
+	return rand()%(b-a)+a;
+}
+
+int game2(SDL_Surface* ecran, PARA_JEU para_jeu, int design_plateau_numero){
+
+	SDL_Event event; 
+	MYBOX ma_case;
+	int continuer = 1;
+	int fin_de_jeu=0;
+	VARIABLE_JEU variable;
+	int victoire = 0;
+
+	variable=init_VARIABLE_JEU(variable);
+
+	while (continuer) {
+
+		// printf("tour: %d\n", variable.tour);
+
+		if(para_jeu.mode == 1)
+       		fin_de_jeu = fin_jeu_version_simple(variable);
+       	else
+       		fin_de_jeu = fin_jeu_version_variante(variable);
+    	
+    	if(fin_de_jeu == 1 && variable.tour > 2){
+    		affichage_victoire(ecran, 1);
+    		victoire = 1;
+    		continuer=0;
+    		// printf("Joueur 1 gagnant!\n");
+    	}else if (fin_de_jeu == 2 && variable.tour > 2){
+    		affichage_victoire(ecran, 2);
+    		victoire = 2;
+    		continuer=0;
+    		// printf("Joueur 2 gagnant!\n");
+    	}
+
+		if ( pion_restant_tab( variable, (variable.tour%2)+1 ) == 0 ){
+			variable.flag_manger = 0;
+		}
+
+		// afficher_plateau(plateau);
+		if(variable.flag_manger == 1)
+			affichage_tour_joueur(ecran, variable.tour, 1);
+		else
+			affichage_tour_joueur(ecran, variable.tour, 0);
+		
+        SDL_WaitEvent(&event);
+
+        switch(event.type) { 
+            case SDL_QUIT: //Bouton quitter de la fenêtre 
+                continuer = 0;
+                return 0;
+                break;
+            case SDL_KEYUP:
+            	switch (event.key.keysym.sym){
+	                case SDLK_ESCAPE: //Echap
+	                    continuer = 0;
+	                    return 0;
+	                    break;
+	                case SDLK_TAB:
+	                	variable=tour_ia_facile(ecran, variable, design_plateau_numero);
+	                	// variable.tour++;
+	                	printf("bouton tab\n");
+	                	break;
+	                default:
+	                break;
+	            }
+	            break;
+	        case SDL_MOUSEBUTTONDOWN:
+	        	if( (670<event.button.x && event.button.x<775) 
+					&& (500<event.button.y && event.button.y<534) ){
+	    			return victoire;
+				}
+	        	// printf("tour: %d \n", tour%2);
+	        	ma_case = mybox_plateau(event);
+	        	// printf("ligne: %d & %d \n", ma_case.ligne, ma_case.colonne);
+
+	        	// printf("pion_choisie: %d && %d \n", variable.pion_select.ligne, variable.pion_select.colonne);
+	        	variable = game_jvj(ecran, event, ma_case, variable, para_jeu,design_plateau_numero);
+
+	        default:
+	        break;
+        }
+      	
+    	SDL_Flip(ecran); /* Mise à jour de l'écran */
+    }
+
+    return victoire;
+}
+
+/*
+
+duy ali 6-2
+
+*/
